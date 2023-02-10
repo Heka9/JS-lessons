@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-5</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 5</h3>
+			<p class="data">
+				Дано кількість секунд, що пройшла від початку доби. Визначити скільки це годин і хвилин.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				// 1. Объявляю необходимые переменные и присваиваю им текущее время и количество секунд от начала дня на момент загрузки страницы
+				const currentDay = new Date();
+				const secondsFromDayStart = currentDay.getSeconds() + (currentDay.getMinutes() * 60) + (currentDay.getHours() * 60 * 60);
+
+				let currentHours;
+				let currentMinutes;
+				let minutesOfCurrentHour;
+
+				document.write(`От начала дня прошло ${secondsFromDayStart} секунд <br>`)
+
+				//2. Определяю сколько это составляет целых часов и минут
+
+				currentHours = Math.floor(secondsFromDayStart / 60 / 60);
+				document.write(`Это составляет ${currentHours} часов <br>`)
+
+				currentMinutes = Math.floor(secondsFromDayStart / 60);
+				document.write(`Это составляет ${currentMinutes} минут <br>`)
+
+				//3. Опреляю время на момент загрузки страницы
+
+				minutesOfCurrentHour = currentMinutes - currentHours * 60;
+				document.write(`Текущее время составляет ${currentHours} часов ${minutesOfCurrentHour} минут`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

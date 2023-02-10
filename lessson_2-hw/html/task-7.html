@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-7</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 7</h3>
+			<p class="data">
+				Знайти суму випадкового номера місяця (від 1 до 12) та випадкового номера дня (від 0 до 6).
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				//1. Помещаю все вводные данные в переменные и объявляю необходимые переменные
+	
+				const minRandomMonth = 1;
+				const maxRandomMonth = 12;
+	
+				const minRandomDay = 0;
+				const maxRandomDay = 6;
+	
+				let randonMonth;
+				let randonDay;
+				let sumMonthAndDay;
+	
+				//2. Высчитываю случайное целое значение среди месяцев и дней потом вывожу в документ
+				randonMonth = Math.floor(Math.random() * (maxRandomMonth - minRandomMonth + 1)) + minRandomMonth;
+				document.write(`Случайный месяц под номером: ${randonMonth} <br>`)
+	
+				randonDay = Math.floor(Math.random() * (maxRandomDay - minRandomDay + 1)) + minRandomDay;
+				document.write(`Случайный день недели под номером: ${randonDay} <br>`)
+	
+				//3. Высчитываю сумму номера месяца и дня потом вывожу в документ
+	
+				sumMonthAndDay = randonMonth + randonDay;
+				document.write(`Сумма месяца и дня составляет: ${sumMonthAndDay}`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-3</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 3</h3>
+			<p class="data">
+				Дано вартість одиниці товару і кількість. Знайти загальну вартість та ПДВ (5% від загальної вартості).
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				// 1. Объявляю необходимые переменные и присваиваю им значения
+				const productPrice = parseFloat(prompt(`Введите стоимость товара, 100`))
+				const productQuqntity = parseFloat(prompt(`Введите количество товара, 1`))
+				let totalPrice;
+				let tax;
+
+
+				//2. Высчитываю общую стоимость товаров и налога
+
+				totalPrice = productPrice * productQuqntity;
+				document.write(`Общая стоимость товаров составляет ${totalPrice}<br>`)
+
+				tax = totalPrice * 0.05
+				document.write(`Размер налога составляет ${tax} (5% от общей суммы)`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

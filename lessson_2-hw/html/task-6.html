@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-6</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 6</h3>
+			<p class="data">
+				З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного товару
+				окремо та загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<div>
+				<h3>Чек</h3>
+				<table>
+					<tr>
+						<td>Наименование продукта</td>
+						<td>Вес продукта в кг.</td>
+						<td>Цена на 1 кг/грн.</td>
+						<td>Общая цена</td>
+					</tr>
+					<tr>
+						<td class="first-product-name"></td>
+						<td class="first-product-quantity"></td>
+						<td class="first-product-price"></td>
+						<td class="first-product-total-price"></td>
+					</tr>
+					<tr>
+						<td class="second-product-name"></td>
+						<td class="second-product-quantity"></td>
+						<td class="second-product-price"></td>
+						<td class="second-product-total-price"></td>
+					</tr>
+					<tr>
+						<td class="third-product-name"></td>
+						<td class="third-product-quantity"></td>
+						<td class="third-product-price"></td>
+						<td class="third-product-total-price"></td>
+					</tr>
+					<tr>
+						<td colspan="3">Общая цена всех продуктов</td>
+						<td class="total-price"></td>
+					</tr>
+				</table>
+			</div>
+			<script>
+				//1. Помещаю все вводные данные в переменные, вывожу необходиые переменные через prompt для заполнения пользователем и помещения полученных значений в константы, нахожу ячейки в таблице для заполнения их данными
+				const firstProduct = prompt(`Введите название первого товара, Яблоко`)
+				const firstProductQuantity = parseFloat(prompt(`Введите количество ${firstProduct} в кг/шт.`, 0))
+				const firstProductPrice = parseFloat(prompt(`Введите цену ${firstProduct} за 1 кг/шт.`, 0))
+				const firstProductTotalPrice = firstProductPrice * firstProductQuantity;
+
+				const secondProduct = prompt(`Введите название первого товара, Груша `)
+				const secondProductQuantity = parseFloat(prompt(`Введите количество ${secondProduct} в кг/шт.`, 0))
+				const secondProductPrice = parseFloat(prompt(`Введите цену ${secondProduct} за 1 кг/шт.`, 0))
+				const secondProductTotalPrice = secondProductPrice * secondProductQuantity;
+
+
+				const thirdProduct = prompt(`Введите название первого товара, Апельсин`)
+				const thirdProductQuantity = parseFloat(prompt(`Введите количество ${thirdProduct} в кг/шт.`, 0))
+				const thirdProductPrice = parseFloat(prompt(`Введите цену ${thirdProduct} за 1 кг/шт.`, 0))
+				const thirdProductTotalPrice = thirdProductPrice * thirdProductQuantity;
+
+				const totalPrice = firstProductTotalPrice + secondProductTotalPrice + thirdProductTotalPrice;
+
+				//Получаю ячейки таблицы в пременные
+
+				let firstProductCell = document.querySelector(".first-product-name");
+				let firstProductQuantityCell = document.querySelector(".first-product-quantity");
+				let firstProductPriceCell = document.querySelector(".first-product-price");
+				let firstProductTotalPriceCell = document.querySelector(".first-product-total-price");
+
+				let secondProductCell = document.querySelector(".second-product-name");
+				let secondProductQuantityCell = document.querySelector(".second-product-quantity");
+				let secondProductPriceCell = document.querySelector(".second-product-price");
+				let secondProductTotalPriceCell = document.querySelector(".second-product-total-price");
+
+				let thirdProductCell = document.querySelector(".third-product-name");
+				let thirdProductQuantityCell = document.querySelector(".third-product-quantity");
+				let thirdProductPriceCell = document.querySelector(".third-product-price");
+				let thirdProductTotalPriceCell = document.querySelector(".third-product-total-price");
+
+				let totalPriceCell = document.querySelector(".total-price");
+
+				//2. Помещаю полученные значения в соответствующие ячейки таблицы
+
+				firstProductCell.innerHTML = firstProduct;
+				firstProductQuantityCell.innerHTML = firstProductQuantity;
+				firstProductPriceCell.innerHTML = firstProductPrice;
+				firstProductTotalPriceCell.innerHTML = `${firstProductTotalPrice} грн.`;
+
+				secondProductCell.innerHTML = secondProduct;
+				secondProductQuantityCell.innerHTML = secondProductQuantity;
+				secondProductPriceCell.innerHTML = secondProductPrice;
+				secondProductTotalPriceCell.innerHTML = `${secondProductTotalPrice} грн.`;
+
+				thirdProductCell.innerHTML = thirdProduct;
+				thirdProductQuantityCell.innerHTML = thirdProductQuantity;
+				thirdProductPriceCell.innerHTML = thirdProductPrice;
+				thirdProductTotalPriceCell.innerHTML = `${thirdProductTotalPrice} грн.`;
+
+				totalPriceCell.innerHTML = `${totalPrice} грн.`;
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

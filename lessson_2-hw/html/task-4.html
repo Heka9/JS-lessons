@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-4</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 4</h3>
+			<p class="data">
+				Дано довжину у сантиметрах. Визначати скільки це метрів і кілометрів.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				// 1. Объявляю необходимые переменные и присваиваю им значения
+
+				const userHeight = parseFloat(prompt(`Введите свой рост в сантиментах, например 120см.`))
+				let heightInMeters;
+				let heightInKilometers;
+
+				document.write(`Ваш рост составляет ${userHeight} сантиметров <br> `)
+
+				//2. Определяю сколько это составляет метров и километров
+
+				heightInMeters = (userHeight / 100).toFixed(2);
+				heightInKilometers = (userHeight / 100000).toFixed(4);
+
+				document.write(`Это составляет ${heightInMeters} метров или ${heightInKilometers} километров `)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
