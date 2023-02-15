@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-3</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 3</h3>
+			<p class="data">
+				Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби. </p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const maxValue = 5
+				const minValue = 1
+
+				const randomValue = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue
+
+				let userValue = parseInt(prompt(`Угадайте случайное число от 1 до 5 включительно, осталось 2 попытки`))
+
+				if (userValue == randomValue) {
+					alert(`Вы угадали`)
+					document.write(`Вы угадали, случайное число это ${randomValue}`)
+				}
+				else {
+					alert(`Вы не угадали`)
+					userValue = parseInt(prompt(`Введите новое число от 1 до 5 включительно, осталась 1 попытка`))
+					if (userValue == randomValue) {
+						alert(`Вы угадали`)
+						document.write(`Вы угадали, случайное число это ${randomValue}`)
+					}
+					else {
+						document.write(`Вы не угадали, случайное число это ${randomValue}.<br> Обновите страницу, чтобы начать сначала`)
+					}
+				}
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

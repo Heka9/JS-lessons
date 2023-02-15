@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-1</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 1</h3>
+			<p class="data">
+				1. З клавіатури вводяться імена двох дітей та кількість у них цукерок. Вивести не екран ім’я тієї дитини, у
+				якої кількість цукерок є більшою, або вивести, що кількість однакова.
+			<p>
+				Ответ:
+			</p>
+			<script>
+				// 1. Объявляю необходимые переменные и присваиваю им значения
+
+				const firstChildName = prompt(`Введите имя первого ребенка`)
+				const secondChildName = prompt(`Введите имя второго ребенка`)
+				const fisrtChildCandies = parseInt(prompt(`Введите количество конфет у первого ребенка`))
+				const secondChildCandies = parseInt(prompt(`Введите количество конфет у второго ребенка`))
+
+				//2. Описываю условия 
+
+				if (fisrtChildCandies > secondChildCandies)
+					document.write(`У ${firstChildName} конфет больше`)
+				else if (secondChildCandies > fisrtChildCandies)
+					document.write(`У ${secondChildName} конфет больше`)
+				else document.write(`У ${firstChildName} и ${secondChildName} одинаковое количество конфет`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-2</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 2</h3>
+			<p class="data">
+				З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці,
+				інакше, якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				// 1. Объявляю необходимые переменные и присваиваю им значения
+				const productPrice = parseFloat(prompt(`Введите цену товара`)); 5
+				const userMoney = parseFloat(prompt(`Введите количество денег`)); 8
+				const lotteryPrice = 4
+
+				if (userMoney < productPrice)
+					document.write(`У вас недостаточно денег для покупки товара`)
+
+				else if (userMoney >= productPrice && userMoney < productPrice + lotteryPrice)
+
+					document.write(`У вас доcтаточно денег для покупки товара`)
+				else document.write(`У вас доcтаточно денег для покупки товара, желаете купить лотерейный билет за ${lotteryPrice} грн.? <a href="">Купить билет </a>`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
