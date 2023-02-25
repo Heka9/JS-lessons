@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-10</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 10</h3>
+			<p class="data">
+				Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем числами.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const userStartInterval = parseInt(prompt(`Введите начало интервала`))
+				const userEndInterval = parseInt(prompt(`Введите конец интервала`))
+				let sumOddNumbers = 0
+
+				for (let i = userStartInterval + 1; i < userEndInterval; i++) {
+					if (i % 2 != 0) sumOddNumbers += i
+				}
+				document.write(`Сумма всех непарных чисел в диапазоне от ${userStartInterval} до ${userEndInterval} не включая их составляет ${sumOddNumbers}`)
+
+				/*
+					0.решение без использования цикла, только математика, (закомментируйте весь код выше, а ниже раскомментируйте только однострочные комментарии)
+					нужно найти сумму непарных чисел в диапазоне от a до b отбросив a и b (для диапазона 3-32 ищем сумму непарных чисел от 4 до 31 включительно)
+				*/
+
+				// const userStartInterval = parseInt(prompt(`Введите начало интервала`))
+				// const userEndInterval = parseInt(prompt(`Введите конец интервала`))
+				// let sumOddNumbers = 0
+
+				/*
+					1.находим первое непарное число, если первое заданное число пользователем делится на 2 без остатка,
+					тогда увеличиваем его на 1, если нет - на 2
+				*/
+
+				// const firstOddIntervalNumber = (userStartInterval % 2 == 0) ? userStartInterval + 1 : userStartInterval + 2
+
+				/*
+					2.таким же способом находим последнее непарное число из диапазона, только уже отнимаем 1 или 2,
+					если делится на 2 без остатка, тогда уменьшаем его на 1, если нет - на 2
+				*/
+
+				// const lastOddIntervalNumber = (userEndInterval % 2 == 0) ? userEndInterval - 1 : userEndInterval - 2
+
+				/*
+					3.арифметический шаг, каждое следующее непарное число больше на 2
+				*/
+
+				// const oddNumbersStep = 2
+
+				/*
+					4.применяем формулу чтоб найти количество чисел в интервале
+					Аn=A1+d*(n-1),
+					где An - последнее непарное число интервала(lastOddIntervalNumber)
+					A1 - первое непарное число интервала(firstOddIntervalNumber)
+					d - арифметическая прогрессия, в данном случае 2, так как ищем непарные числа(oddNumbersStep)
+					n - количество подходящих чисел, в нашем случае непарных(quantityOddNumbers)
+				*/
+
+				// const quantityOddNumbers = (lastOddIntervalNumber - firstOddIntervalNumber + oddNumbersStep) / oddNumbersStep
+
+				/*
+					5.теперь находим сумму чисел афирметической прогрессии
+					Sum = (A1+An)*n/d
+				*/
+
+				// sumOddNumbers = (firstOddIntervalNumber + lastOddIntervalNumber) * quantityOddNumbers / oddNumbersStep
+				// document.write(`Сумма всех непарных чисел в диапазоне от ${userStartInterval} до ${userEndInterval} не включая их составляет ${sumOddNumbers}`)
+
+				/*
+					6. Вывод. получаем такой же ответ, только полученный в разы сложнее)))
+				*/
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

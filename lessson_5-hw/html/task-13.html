@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-13</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 13</h3>
+			<p class="data">
+				Морський бій. Комп’ютер випадково розташовує одиночний корабель на полі розміром N*M. Маючи К снарядів
+				користувач намагається потопити корабель.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				const userFieldWidth = parseInt(prompt(`Введите количество клеток поля по горизонтали`))
+				const userFirldHeight = parseInt(prompt(`Введите количество клеток поля по вертикали`))
+				const userShotsQuantity = parseInt(prompt(`Введите количество выстрелов`))
+
+				const shipPositionX = 1 + Math.floor(Math.random() * userFieldWidth)
+				const shipPositionY = 1 + Math.floor(Math.random() * userFirldHeight)
+
+				let userShotX
+				let userShotY
+
+				for (let i = 0; i < userShotsQuantity; i++) {
+
+					userShotX = parseInt(prompt(`Введите координаты выстрела по горизонтали`))
+					userShotY = parseInt(prompt(`Введите координаты выстрела по вертикали`))
+
+					if (userShotX === shipPositionX && userShotY === shipPositionY) {
+						alert(`Вы потопили корабль`)
+						break
+					} else alert(`Вы промазали`)
+
+				}
+
+				document.write(`Корабль был размещен на поле в ${userFieldWidth} клеток шириной и ${userFirldHeight} высотой. 
+				У пользователя было ${userShotsQuantity} выстрелов. Корабль был размещен на поле ${shipPositionX} по горизонтале и ${shipPositionY} по вертикали.`)
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

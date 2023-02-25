@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-6</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 6</h3>
+			<p class="data">
+			<p>Вивести 3 таблиці (по 3 рядки і 3 стовпці у кожній) за зразком</p>
+			<img src="../img/image-05.png" alt="image">
+			</p>
+			<p>
+				Ответ:
+			</p>
+
+			<script>
+
+				// 1. Объявляю необходимые переменные и присваиваю им значения
+				const rowsQuantity = 3
+				const columnsQuantity = 3
+				const tablesQuantity = 3
+
+
+				for (let i = 1, counter = 1; i <= tablesQuantity; i++) {
+					document.write(`<table style="display: inline-block; margin-right: 50px"><tbody>`)
+					for (let j = 1; j <= rowsQuantity; j++) {
+						document.write(`<tr>`)
+						for (let k = 1; k <= columnsQuantity; k++, counter++) {
+							document.write(`<td>${counter}</td>`)
+						}
+						document.write(`</tr>`)
+					}
+					document.write(`</table></tbody>`)
+				}
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

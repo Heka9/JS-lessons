@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-12</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 12</h3>
+			<p class="data">
+			<p>Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. Вибір у кожній позиції вибирається як одне з
+				чотирьох зображень. Вивести ці зображення і повідомити виграш користувача (три перших зображення 100 грн,
+				три других – 200, три третіх – 500, три четвертих зображення – 1000грн). Використати цикли і switch (для
+				вибору зображення за номером).</p>
+			<img src="../img/image-12.png" alt="image">
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const userWantPlay = confirm(`Хотите начать игру?`)
+				const minPictureValue = 1
+				const maxPictureValue = 4
+				const selectionCounter = 3
+				let lemonPictureCounter = 0
+				let orangePictureCounter = 0
+				let plumPictureCounter = 0
+				let cherryPictureCounter = 0
+				let prize
+
+				if (userWantPlay) {
+					for (let i = 1; i <= selectionCounter; i++) {
+						const randomPicture = 1 + Math.floor(Math.random() * 4)
+
+						switch (randomPicture) {
+							case 1:
+								lemonPictureCounter++
+								break;
+							case 2:
+								orangePictureCounter++
+								break;
+							case 3:
+								plumPictureCounter++
+								break;
+							case 4:
+								cherryPictureCounter++
+								break;
+						}
+						document.write(`<img src = "../img/${randomPicture}.png" <br>`)
+
+					}
+
+					if (lemonPictureCounter === 3) prize = 100
+					else if (orangePictureCounter === 3) prize = 200
+					else if (plumPictureCounter === 3) prize = 500
+					else if (cherryPictureCounter === 3) prize = 1000
+					else prize = 0 
+
+					document.write(`Пользователь выиграл ${prize} грн.`)
+
+				} else document.write(`Пользователь не азартный игрок`)
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

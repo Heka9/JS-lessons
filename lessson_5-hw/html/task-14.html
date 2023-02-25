@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-14</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 14</h3>
+			<p class="data">
+				Користувачу повідомляють суму, яку йому треба сплатити. Користувач поступово вводить суму грошей до
+				тих пір, поки суми не буде достатньо для оплати товарів (кожного разу користувачу повідомляють, яку ще
+				суму потрібно ввести).
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				const minSumValue = 1
+				const maxSumValue = 10000
+				const randomSum = 1 + Math.floor(Math.random() * 10000)
+				let userChange = randomSum
+
+				do {
+
+					let userSum = parseInt(prompt(`Вам необходимо оплатить ${userChange}грн.\nВведите сумму, которую готовы оплатить`))
+					userChange -= userSum
+
+				} while (userChange > 0);
+
+				document.write(`Вы опдатили всю сумму (${randomSum}грн.)`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-7</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 7</h3>
+			<p class="data">
+			<p>Вивести на екран N абзаців (N вводиться користувачем) за зразком:</p>
+			<img src="../img/image-06.png" alt="image">
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				const userParagraph = parseInt(prompt(`Введите количество абзацев`))   
+
+				for (let i = 1; i <= userParagraph; i++) {
+					document.write(`<h1>Заголовок ${i}<h1>`)
+
+					for (let j = 1; j <= i; j++) {
+
+						document.write(`<p>Розділ ${i}, параграф ${j}</p>`)
+
+					}
+					document.write(`<hr>`)
+				}
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-9</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 9</h3>
+			<p class="data">
+			<p>Користувач загадує число. Комп’ютер задає питання поки не вгадає число користувача (використати confirm).
+			</p>
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				const userNumber = parseInt(prompt(`Введите число от 1 до 10`))
+				const minIntervalNumber = 1
+				const maxIntervalNumber = 10
+				let userAnswer
+				let programmAnswer
+
+				do {
+
+					programmAnswer = minIntervalNumber + Math.floor(Math.random() * (maxIntervalNumber - minIntervalNumber + 1))
+					userAnswer = confirm(`Вы загадали число ${programmAnswer}?`)
+
+				} while (userAnswer === false);
+
+				if (userNumber === programmAnswer) document.write(`Пользователь загадал число ${userNumber}, программа выбрала число ${programmAnswer}`)
+				else document.write(`Вы обматули программу, Вы загадали число ${userNumber}, а верным ответом указали ${programmAnswer}. Обманывать плохо :-( `) 
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
