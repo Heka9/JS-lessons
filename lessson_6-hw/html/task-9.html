@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-9</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 9</h3>
+			<p class="data">
+				З клавіатури вводиться пароль (правильний пароль- 78). Поки пароль не вірний дати можливість користувачу
+				повторно ввести його.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				const password = 78
+				let userPassword
+				let atemptCounter = 0
+
+				do {
+
+					// вывод окна с уведомлением после первой итерации, чтоб отсечь вывод с неверным вводом пароля в самом начале работы программы, 
+					// когда пользователь еще ничего не вводил
+					if (atemptCounter !== 0) alert(`Вы ввели неверный пароль, попробуйте еще раз`)
+
+					userPassword = parseInt(prompt(`Введите пароль`))
+					atemptCounter++
+
+				} while (userPassword !== password);
+
+				document.write(`Пароль верный, вход разрешен!`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

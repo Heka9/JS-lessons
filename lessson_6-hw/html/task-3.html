@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-3</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 3</h3>
+			<p class="data">
+				З клавіатури вводиться початкове значення суми. Поки сума є меншою за 100 додавати до неї числа, які
+				вводяться з клавіатури.
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const startValue = parseInt(prompt(`Введите число от 1 до 100`))
+				const limitValue = 100
+				let userSum = startValue
+
+				do {
+
+					let userNumber = parseInt(prompt(`Введите число`))
+					userSum += userNumber
+
+				} while (userSum < limitValue);
+
+				document.write(`Сумма составила ${userSum}, начальное значение было ${startValue}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

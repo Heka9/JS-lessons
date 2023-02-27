@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-8</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 8</h3>
+			<p class="data">
+				З клавіатури вводяться числа. Знаходити суму цифр до тих пір, поки сума не стане більшою за 20.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				let userNUmber
+				let sumNumbers = 0
+
+				do {
+					userNumber = parseInt(prompt(`Введите число`))
+					sumNumbers += userNumber
+
+				} while (sumNumbers <= 20);
+
+				document.write(`Сумма составила ${sumNumbers}`)
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-6</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 6</h3>
+			<p class="data">
+			<p>На екрані виводиться меню: <br>
+				1.Ініціалізація (сума=0)<br>
+				2.Додати 2<br>
+				3.Додати 3<br>
+				4.Відняти 2<br>
+				5.Відняти 3<br>
+				6.Вивести суму<br>
+				7.Вихід.<br>
+				Шляхом поступового вибору відповідних пунктів спробувати отримати число N, яке вводиться з клавіатури.
+			</p>
+			</p>
+			<p>
+				Ответ:
+			</p>
+
+			<script>
+
+				const userTotalNumber = parseInt(prompt(`Введите число, которое хотите получить`))
+				let result = 0
+				let userCurrentNumber
+
+				do {
+					userCurrentNumber = parseInt(prompt(`Введите пункт меню\n1.Ініціалізація (сума=0)\n2.Додати 2\n3.Додати 3\n4.Відняти 2\n5.Відняти 3\n6.Вивести суму\n7.Вихід.`))
+
+					switch (userCurrentNumber) {
+						case 1: result = 0
+							break;
+						case 2: result += 2
+							break;
+						case 3: result += 3
+							break;
+						case 4: result -= 2
+							break;
+						case 5: result -= 3
+							break;
+						case 6: alert(`${result}`)
+							break;
+					}
+
+					alert(`Текущая сумма = ${result}`)
+
+				} while (result !== userTotalNumber && userCurrentNumber !== 7);
+
+				if(result === userTotalNumber) document.write(`Вы получили необходимое число (${userTotalNumber})`)
+				else document.write(`Вы завершили работу программы`)
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-12</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 12</h3>
+			<p class="data">
+				З клавіатури вводяться поступово числа. Знайти два найбільші числа. Ввід здійснюється до тих пір, поки
+				різниця між такими числами є більшою за 5.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				let firstMaxNumber = -Infinity
+				let secondMaxNumber = -Infinity
+				let tempNumber
+				//   присваиваю переменной разницы число 6, чтобы на первой итерации, когда одно из чисел содержит -Infinity, 
+				//   цикл перешел на следующую итерацию и не было получено false в условии цикла
+				let differenceBetweenNumbers = 6
+
+				// для проверки
+				let arr = []
+
+				do {
+
+					const userNumber = parseInt(prompt(`Введите число`))
+
+					// для проверки
+					arr.push(userNumber)
+
+					//   если введенное пользователем число больше или равно первого наибольшего числа, 
+					//   тогда переприсваиваю значения для первого и второго наибольшего числа через третью переменную (tempNumber), 
+					//   а второе наибольшее число получает значение первого (оно хранится в третьей переменной(tempNumber))
+					if (userNumber >= firstMaxNumber && userNumber > secondMaxNumber) {
+
+						tempNumber = firstMaxNumber
+						firstMaxNumber = userNumber
+						secondMaxNumber = tempNumber
+
+					//   если введенное пользователем число меньше первого наибольшего числа, но больше или равно второму наибольшему числу, 
+					//   переприсваиваю значение второго наибольшего числа
+					} else if ((userNumber < firstMaxNumber && userNumber >= secondMaxNumber))
+						secondMaxNumber = userNumber
+
+					//   делаю проверку, что оба наибольших числа содержат целое число, для корректного расчета разницы,
+					//   тоесть пользователь ввел более двух чисел и переменные не содержат -Infinity
+					if (firstMaxNumber !== -Infinity && secondMaxNumber !== -Infinity) {
+						differenceBetweenNumbers = firstMaxNumber - secondMaxNumber
+					}
+
+				} while (differenceBetweenNumbers > 5);
+
+				document.write(`Наибольшие числа среди введенных составляют ${firstMaxNumber} и ${secondMaxNumber}<br>`)
+				
+				// для проверки
+				document.write(`Были введены следующие числа ${arr}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-15</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 15</h3>
+			<p class="data">
+				На полі з 10 клітинок розміщують зайця. За один крок заєць може стрибати на відстань від 0 до 3
+				позицій у будь-якому напрямку. З клавіатури вводиться позиція пострілу. Гра продовжується поки у
+				користувача не закінчаться патрони (кількість вводиться з клавіатури) або не буде влучання. Спробуйте
+				відоразити гру графічно.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<div class="grid-rabbit"></div>
+			<script>
+
+				const minFieldValue = 1
+				const maxFieldValue = 10
+				let rabbitPosiion = minFieldValue + Math.floor(Math.random() * (maxFieldValue - minFieldValue + 1))
+				let shotsQuantity = parseInt(prompt(`Введите количество выстрелов`))
+				const maxChangeRabbitPosition = 3
+				let newMaxRabbitPosition
+				let newMinRabbitPosition
+				let userShotPosition
+				let userShotItem  // переменная для стилей
+
+				const field = document.querySelector(".grid-rabbit")
+
+				for (let i = 1; i <= maxFieldValue; i++) {
+					field.insertAdjacentHTML(
+						"beforeend",
+						`<div class="grid-rabbit__item item-${i}">${i}</div>`
+					)
+				}
+
+				do {
+
+					userShotPosition = parseInt(prompt(`Введите поле для выстрела, от 1 до 10 включительно`))
+
+					userShotItem = document.querySelector(`.item-${userShotPosition}`)
+
+					if (userShotPosition !== rabbitPosiion) {
+
+						userShotItem.classList.add("miss") // для стилей
+
+						newMaxRabbitPosition = (rabbitPosiion + maxChangeRabbitPosition > maxFieldValue) ? maxFieldValue : rabbitPosiion + maxChangeRabbitPosition
+						newMinRabbitPosition = (rabbitPosiion - maxChangeRabbitPosition < minFieldValue) ? minFieldValue : rabbitPosiion - maxChangeRabbitPosition
+
+						rabbitPosiion = minFieldValue + Math.floor(Math.random() * (maxFieldValue - minFieldValue + 1))
+
+						shotsQuantity--
+
+					} else {
+
+						userShotItem.classList.add("hit") // для стилей
+						shotsQuantity--
+					}
+
+				} while (userShotPosition !== rabbitPosiion && shotsQuantity > 0);
+
+				if (userShotPosition === rabbitPosiion && shotsQuantity > 0) document.write(`Вы попали в кролика. <br> У вас оставалось ${shotsQuantity} выстрелов`)
+
+				if (userShotPosition === rabbitPosiion && shotsQuantity === 0) document.write(`Вы попали в кролика последним выстрелом`)
+				else if (shotsQuantity === 0) document.write(`У вас закончились выстрелы, позиция кролика ячейка номер ${rabbitPosiion}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

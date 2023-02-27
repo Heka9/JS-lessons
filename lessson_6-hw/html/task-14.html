@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-14</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 14</h3>
+			<p class="data">
+				Комп’ютер випадковим чином розміщує одиночний корабель на полі 5*5. З клавіатури поступово вводяться
+				координати пострілу поки корабель не буде потоплено. Спробуйте відоразити гру графічно.
+			</p>
+
+			<p>
+				Ответ:
+			</p>
+			<div class="grid">
+				<div></div>
+				<div class="grid__title">1</div>
+				<div class="grid__title">2</div>
+				<div class="grid__title">3</div>
+				<div class="grid__title">4</div>
+				<div class="grid__title">5</div>
+				<div class="grid__title">1</div>
+				<div class="grid__item row-1 col-1"></div>
+				<div class="grid__item row-1 col-2"></div>
+				<div class="grid__item row-1 col-3"></div>
+				<div class="grid__item row-1 col-4"></div>
+				<div class="grid__item row-1 col-5"></div>
+				<div class="grid__title">2</div>
+				<div class="grid__item row-2 col-1"></div>
+				<div class="grid__item row-2 col-2"></div>
+				<div class="grid__item row-2 col-3"></div>
+				<div class="grid__item row-2 col-4"></div>
+				<div class="grid__item row-2 col-5"></div>
+				<div class="grid__title">3</div>
+				<div class="grid__item row-3 col-1"></div>
+				<div class="grid__item row-3 col-2"></div>
+				<div class="grid__item row-3 col-3"></div>
+				<div class="grid__item row-3 col-4"></div>
+				<div class="grid__item row-3 col-5"></div>
+				<div class="grid__title">4</div>
+				<div class="grid__item row-4 col-1"></div>
+				<div class="grid__item row-4 col-2"></div>
+				<div class="grid__item row-4 col-3"></div>
+				<div class="grid__item row-4 col-4"></div>
+				<div class="grid__item row-4 col-5"></div>
+				<div class="grid__title">5</div>
+				<div class="grid__item row-5 col-1"></div>
+				<div class="grid__item row-5 col-2"></div>
+				<div class="grid__item row-5 col-3"></div>
+				<div class="grid__item row-5 col-4"></div>
+				<div class="grid__item row-5 col-5"></div>
+			</div>
+			<script>
+
+				const shipPositionX = 1 + Math.floor(Math.random() * 5)
+				const shipPositionY = 1 + Math.floor(Math.random() * 5)
+				let userShotX
+				let userShotY
+				let shotCounter = 0
+
+				do {
+
+					userShotX = parseInt(prompt(`Введите поле для выстрела по горизонтали`))
+					userShotY = parseInt(prompt(`Введите поле для выстрела по вертикали`))
+
+					let shottedItem = document.querySelector(`.col-${userShotX}.row-${userShotY}`)
+
+					if (shipPositionX === userShotX && shipPositionY === userShotY)
+						shottedItem.classList.add("hit")
+					else shottedItem.classList.add("miss")
+
+					shotCounter++
+					shottedItem.innerHTML = `${shotCounter} shot`
+
+				} while (shipPositionX !== userShotX || shipPositionY !== userShotY || shipPositionX !== userShotX && shipPositionY !== userShotY);
+
+				document.write(`Вы потопили корабль за ${shotCounter} выстрелов`)
+			</script>
+
+		</div>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-5</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 5</h3>
+			<p class="data">
+				З клавіатури вводяться два числа N i M (N&lt;M). Вивести на екран числа
+				N---M
+				N+1 --- M-1
+				N+2 --- M-2
+				N+3 --- M-3
+				. . . . . .
+				Виведення завершити коли число справа стане меншим за число зліва.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+				let userMinNumber = parseInt(prompt(`Введите меньшее число`))
+				let userMaxNumber = parseInt(prompt(`Введите большее число`))
+
+				do {
+
+					document.write(`${userMinNumber} --- ${userMaxNumber} <br>`)
+					userMinNumber++
+					userMaxNumber--
+
+				} while (userMinNumber <= userMaxNumber);
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

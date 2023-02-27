@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-4</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 4</h3>
+			<p class="data">
+				З клавіатури поступово вводяться числа. Знайти суму перших N парних чисел.
+			<p>
+				Ответ:
+			</p>
+			<script>
+				const evenNumbersQuantity = parseInt(prompt(`Введите количество парных чисел, сумму которых хотите найти`))
+				let evenNumbersCounter = 0
+				let evenNumbersSum = 0
+
+				do {
+					const userNumber = parseInt(prompt(`Введите число`))
+					if (userNumber % 2 === 0 && userNumber !== 0) {
+						evenNumbersSum += userNumber
+						evenNumbersCounter++
+					}
+
+				} while (evenNumbersCounter < evenNumbersQuantity);
+
+				document.write(`Cумма первых введенных ${evenNumbersQuantity} парных чисел составляет ${evenNumbersSum}`)
+		
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

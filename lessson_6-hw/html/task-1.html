@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-1</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 1</h3>
+			<p class="data">
+				З клавіатури вводитяться числа поки не буде введено 0. Знайти суму введених чисел та добуток введених чисел
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				let multiplicationNumber = 1
+				let sumNUmber = 0
+				let userNumber
+
+				do {
+
+					userNumber = parseInt(prompt(`Введите случайное число от 0 до 10`))
+
+					sumNUmber += userNumber
+
+					//проверка, если сразу введен 0 (чтобы в итоге был вывод не 1, так как изначально значение 1)
+					if (userNumber === 0 && sumNUmber === 0) multiplicationNumber = 0
+
+					//проверка, если сразу введено много чисел, а потом введен 0 (чтобы в итоге был вывод не 0, а произведние, так как умножение на 0 дает 0)
+					else if (userNumber === 0) multiplicationNumber *= 1
+
+					else multiplicationNumber *= userNumber
+
+				} while (userNumber !== 0);
+
+				document.write(`Сумма веденных чисел составила ${sumNUmber}, произведение введенных чисел составило ${multiplicationNumber}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

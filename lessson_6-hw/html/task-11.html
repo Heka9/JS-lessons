@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-11</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 11</h3>
+			<p class="data">
+				Комп’ютер загадує випадкове число від 1 до 10. Вгадати число шляхом введеня можливих варіантів. В кінці
+				вивести кількість спроб користувача.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const randomNumber = 1 + Math.floor(Math.random() * 10)
+				let atemptCounter = 0
+				let userNumber
+
+				do {
+
+					userNumber = parseInt(prompt(`Угадайте число от 1 до 10`))
+					atemptCounter++
+
+				} while (randomNumber !== userNumber);
+
+				document.write(`Вы угадали число за ${atemptCounter} потыток, было загадано число ${randomNumber}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-10</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 10</h3>
+			<p class="data">
+				З клавіатури вводиться вартість одиниці товару. Поки користувач не введе суму грошей, яка достатня для
+				купівлі товару або не відмовиться від купівлі давати можливість вводити суму грошей.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const productPrice = parseInt(prompt(`Введите стоимость товара`))
+				let currentSum = 0
+				let userDecision = true
+
+				do {
+
+					if (currentSum !== 0) {
+						alert(`Вы оплатили ${currentSum}грн., но этого недостаточно для покупки товара\nТовар стоит ${productPrice}`)
+						userDecision = confirm(`Вы желаете продолжить оплачивать товар?`)
+					}
+
+					if (userDecision) {
+						const userSum = parseInt(prompt(`Введите сумму`))
+						currentSum += userSum
+					}
+
+				} while (currentSum < productPrice && userDecision === true);
+
+
+				if (currentSum >= productPrice) document.write(`Вы успешно оплатили товар`)
+				else document.write(`Вы отказались отлачивать товар, внесенная ранее сумма была утеряна)`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-7</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 7</h3>
+			<p class="data">
+				Користувач загадує натуральне число від 1 до N. Шляхом задавання мінімальної кількості запитань знайти
+				вказане число (застосувати бінарний пошук, на кожному кроці якого інтервал пошуку зменшується на 2 шляхом
+				порівняння з елементом, який знаходиться у центрі поточного інтервалу).
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				let minIntervalNumber = 1 
+				let maxIntervalNumber = parseInt(prompt(`Введите максимальное значение диапазона чисел`))
+				alert(`Загадайте число от 1 до ${maxIntervalNumber}`)    
+				// const userNumber = parseInt(prompt(`Загадайте число от 1 до ${maxIntervalNumber}`)
+				let avarageIntervalValue
+
+				do {
+
+					avarageIntervalValue = (minIntervalNumber + maxIntervalNumber) / 2
+
+					let userAnswer = confirm(`Загаданное число больше ${avarageIntervalValue}?`)
+
+					if (userAnswer) minIntervalNumber = Math.ceil(avarageIntervalValue)
+					else maxIntervalNumber = Math.floor(avarageIntervalValue)
+
+
+				} while (minIntervalNumber !== maxIntervalNumber);
+
+				document.write(`Вы загадали число ${minIntervalNumber}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
