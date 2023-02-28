@@ -69,9 +69,15 @@
 
 				} while (userShotPosition !== rabbitPosiion && shotsQuantity > 0);
 
-				if (userShotPosition === rabbitPosiion && shotsQuantity > 0) document.write(`Вы попали в кролика. <br> У вас оставалось ${shotsQuantity} выстрелов`)
+				if (userShotPosition === rabbitPosiion && shotsQuantity > 0) {
+					document.write(`Вы попали в кролика. <br> У вас оставалось ${shotsQuantity} выстрелов`)
+					userShotItem.classList.add("hit") // для стилей
+				}
 
-				if (userShotPosition === rabbitPosiion && shotsQuantity === 0) document.write(`Вы попали в кролика последним выстрелом`)
+				if (userShotPosition === rabbitPosiion && shotsQuantity === 0) {
+					document.write(`Вы попали в кролика последним выстрелом`)
+					userShotItem.classList.add("hit") // для стилей
+				}
 				else if (shotsQuantity === 0) document.write(`У вас закончились выстрелы, позиция кролика ячейка номер ${rabbitPosiion}`)
 
 			</script>
