@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-8</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 8</h3>
+			<p class="data">
+				Створити функцію, яка виводить банер (у функцію передаються: зображення, заголовок та посилання, куди
+				переходимо при кліку на зображення (тег img повине знаходитись у середині тега a: &lt;a&gt; &lt;img
+				src=”шлях”&gt; &lt;/a&gt;
+			</p>
+			<p>
+				Ответ:
+			</p>
+
+			<script>
+
+				function snowBanner(image, title, link) {
+
+					document.write(`<h2>${title}</h2>`)
+					document.write(`<a href="${link}" target="_blank"><img style="max-width:300px" src="../img/${image}.png"></a>`)
+
+				}
+
+				const userImage = parseInt(prompt(`Введите номер картинки от, 5 до 7`))
+				const userTitle = prompt(`Введите заголовок для картинки`)
+				const userLink = prompt(`Введите адресс сылки для перехода по клику на картинке`, `https://www.youtube.com`)
+
+				snowBanner(userImage, userTitle, userLink)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-3</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 3</h3>
+			<p class="data">
+				Створити окремі функції, які для 4 чисел знаходять:
+				1)суму;
+				2)добуток;
+				3)середнє арифметичне;
+				4)мінімальне значення.
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				// функции выполнения действий, согласно списку
+				function getSummNumber(num1, num2, num3, num4) {
+					return num1 + num2 + num3 + num4
+				}
+				function getMultiplicationNumber(num1, num2, num3, num4) {
+					return num1 * num2 * num3 * num4
+				}
+				function getAvarageNumber(num1, num2, num3, num4) {
+					return (num1 + num2 + num3 + num4) / 4
+				}
+				function getMinNumber(num1, num2, num3, num4) {
+					return Math.min(num1, num2, num3, num4)
+				}
+
+				// функция для определения типа выбранной операции пользователем (для красоты вывода итогового результата)
+				function getOperationType(number) {
+					switch (number) {
+						case 1: return "получить сумму"
+							break;
+						case 2: return "получить произведение"
+							break;
+						case 3: return "получить среднее арифметическое"
+							break;
+						case 4: return "получить минимальное значение"
+							break;
+						default: return "выбрана несуществующая операция"
+							break;
+					}
+				}
+
+				// функция для получения результата, согласно выбора пользователя (для красоты вывода итогового результата)
+				function getResultValue(number) {
+					if (number === 1) return getSummNumber(firstUserNumber, secondUserNumber, thirdUserNumber, fourthUserNumber)
+					else if (number === 2) return getMultiplicationNumber(firstUserNumber, secondUserNumber, thirdUserNumber, fourthUserNumber)
+					else if (number === 3) return getAvarageNumber(firstUserNumber, secondUserNumber, thirdUserNumber, fourthUserNumber)
+					else if (number === 4) return getMinNumber(firstUserNumber, secondUserNumber, thirdUserNumber, fourthUserNumber)
+					else "введены некорректный данные"
+				}
+
+				const firstUserNumber = parseInt(prompt(`Введите первое число`))
+				const secondUserNumber = parseInt(prompt(`Введите второе число`))
+				const thirdUserNumber = parseInt(prompt(`Введите третье число`))
+				const fourthUserNumber = parseInt(prompt(`Введите четвертое число`))
+
+				const userOparation = parseInt(prompt(`Выберите операцию \n1) получить сумму\n2) получить произведение\n3) получить среднее арифметическое\n4) получить минимальное значение`))
+
+				const operationType = getOperationType(userOparation)
+				const result = getResultValue(userOparation)
+
+				document.write(`Вы выбрали операцию ${operationType}. Введены числа ${firstUserNumber}, ${secondUserNumber}, ${thirdUserNumber}, ${fourthUserNumber}.
+				 Результат = ${result}`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

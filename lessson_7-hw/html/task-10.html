@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-10</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 10</h3>
+			<p class="data">
+				Дано покази температур (довільна кількість). Розробити функцію, яка дозволить знайти середнє значення для
+				додатних показів температури.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const userQuantity = parseInt(prompt(`Введите количество значений теиператур`))
+				let positiveValueCounter = 0
+				let positivenumbersSum = 0
+				let averageValue
+
+				function getPositiveNumbersSum(number) {
+					if (number > 0) return number
+					else return 0
+				}
+				function increasePositiveCounter(number) {
+					if (number > 0) return 1
+					else return 0
+				}
+				function getAverageValue(sum, quantity) {
+					return sum / quantity
+				}
+	
+				for (let i = 1; i <= userQuantity; i++) {
+					const userValue = parseInt(prompt(`Введите ${i} показатель температуры`))
+					positiveValueCounter += increasePositiveCounter(userValue)
+					positivenumbersSum += getPositiveNumbersSum(userValue)
+				}
+
+				if (positiveValueCounter > 1) averageValue = getAverageValue(positivenumbersSum, positiveValueCounter)
+				else averageValue = "все введенные числа были отрицательными"
+
+				document.write(`Среди ${userQuantity} показателей температуры, ${positiveValueCounter} имели положительное значение, среднее положительное значение составляет ${averageValue} градусов`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

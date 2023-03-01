@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-7</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 7</h3>
+			<p class="data">
+				Створити функцію, яка випадковим чином виводить на екран одне із 4 зображень (шляхи до зображень передаються
+				у функцію)
+			</p>
+			<p>
+				Ответ:
+			</p>
+
+			<script>
+
+				function getRandomNumber(minValue, maxValue) {
+					return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+				}
+
+				function showImage(number) {
+					document.write(`<img src="../img/${number}.png">`)
+				}
+
+				showImage(getRandomNumber(1, 4))
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-5</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 5</h3>
+			<p class="data">
+				Створити окремі функції, які переводять:
+				1) Сантиметри у дюйми;
+				2) Кілограми у фунти;
+				3) Кілометри у милі.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				// описываю функции конветрирования величин
+				function getInchsFromСentimeters(number) {
+					return number / 2.54
+				}
+				function getPoundsFromKilograms(number) {
+					return number * 2.205
+				}
+				function getMilesFromKilometrs(number) {
+					return number / 1.609
+				}
+
+				// функция определения типа конвертирования (необходима только для красивого вывода ответа)
+				function getUserOperationType(number) {
+					switch (number) {
+						case 1: return "cантиметри у дюйми"
+							break;
+						case 2: return "кілограми у фунти"
+							break;
+						case 3: return "кілометри у милі"
+							break;
+					}
+				}
+
+				// получаю данные от пользователя (тип операции)
+				const userOperation = parseInt(prompt(`Выберите тип преобразования\n1) Сантиметри у дюйми;\n2) Кілограми у фунти;\n3) Кілометри у милі.`))
+
+				// получаю строку с названием вида конвертирования (для красоты вывода ответа)
+				const userOperationType = getUserOperationType(userOperation)
+
+				// дроблю строку на массив слов (для красоты вывода ответа)
+				const arr = userOperationType.split(" ")
+
+				// получаю в переменную величину для конвертирования
+				let userValue
+				if (userOperation === 1) userValue = parseInt(prompt(`Введите сколько cантиметров хотите перевести в дюймы`))
+				else if (userOperation === 2) userValue = parseInt(prompt(`Введите сколько килограмм хотите перевести в фунты`))
+				else if (userOperation === 3) userValue = parseInt(prompt(`Введите сколько километров хотите перевести в мили`))
+
+				// получаю итоговый результат
+				let result
+				if (userOperation === 1) result = getInchsFromСentimeters(userValue)
+				else if (userOperation === 2) result = getPoundsFromKilograms(userValue)
+				else if (userOperation === 3) result = getMilesFromKilometrs(userValue)
+
+				// вывожу ответ
+				document.write(`Вы хотите перевести ${userOperationType}. ${userValue} ${arr[0]} составляет ${result} ${arr[2]}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

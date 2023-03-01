@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-4</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 4</h3>
+			<p class="data">
+				Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних,
+				кількість додатних, кількість більших за 100.
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				// объявляю переменные-счетчики, для каждого типа чисел
+				let evenNumbersQuantity = 0
+				let positiveNumbersQuantity = 0
+				let moreThan100NumbersQuantity = 0
+
+				// функции выполнения действий, согласно списку
+				function getEvenNumbersQuantity(number) {
+					if (number % 2 == 0) return 1
+					else return 0
+				}
+				function getPositiveNumbersQuantity(number) {
+					if (number > 0) return 1
+					else return 0
+				}
+				function getMoreThan100NumbersQuantity(number) {
+					if (number > 100) return 1
+					else return 0
+				}
+
+				// основная функция
+				function getNumbersInfo(num1, num2, num3) {
+
+					for (let i = 0; i < arguments.length; i++) {
+						evenNumbersQuantity += getEvenNumbersQuantity(arguments[i])
+						positiveNumbersQuantity += getPositiveNumbersQuantity(arguments[i])
+						moreThan100NumbersQuantity += getMoreThan100NumbersQuantity(arguments[i])
+					}
+
+					return evenNumbersQuantity, positiveNumbersQuantity, moreThan100NumbersQuantity
+
+				}
+
+				// получаю данные от пользователя
+				const firstUserNumber = parseInt(prompt(`Введите первое число`))
+				const secondUserNumber = parseInt(prompt(`Введите второе число`))
+				const thirdUserNumber = parseInt(prompt(`Введите третье число`))
+
+				// запускаю функцию, соответствующие счетчики получают значения
+				getNumbersInfo(firstUserNumber, secondUserNumber, thirdUserNumber)
+
+				// вывожу ответ
+				document.write(`Вы ввели числа ${firstUserNumber}, ${secondUserNumber}, ${thirdUserNumber}.<br> Количество парных = ${evenNumbersQuantity}, количество положительных = ${positiveNumbersQuantity}, чисел больше 100 = ${moreThan100NumbersQuantity}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
