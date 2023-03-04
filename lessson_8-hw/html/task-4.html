@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-4</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 4</h3>
+			<p class="data">
+				Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :<br>
+				• починаються на букву «А»;<br>
+				• перша і остання літери співпадають;<br>
+				• складаються з більше ніш 5 символів;
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const carNumbers = ["А1223В", "В1223В", "В2331В", "А122", "А2331В", "А2331В", "В2331В", "а23В", "А2В", "Б1223В", "а1223В"]
+
+				let startWithA = 0
+				let sameFirstAndLastLetter = 0
+				let moreThan5Letters = 0
+
+				for (let i = 0; i < carNumbers.length; i++) {
+					if (carNumbers[i][0] === "А") startWithA++
+
+					if (carNumbers[i][0] === carNumbers[i][carNumbers[i].length - 1]) sameFirstAndLastLetter++
+
+					if (carNumbers[i].length > 5) moreThan5Letters++
+				}
+				document.write(`Для примера использован следующий массив номеров: ${carNumbers}<br><br><br>`)
+				document.write(`На букву "А" начинается ${startWithA} номеров.<br>Одинаковая первая и последняя буква у ${sameFirstAndLastLetter} номеров.<br> Номер состоит больше чем из 5 символов у ${moreThan5Letters} номеров`)
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

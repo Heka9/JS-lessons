@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-6</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 6</h3>
+			<p class="data">
+			<p>Дано послідовність цін товарів та назв (у окремих масивах). Вивести на екран ті, які може собі
+				дозволити користувач (кількість грошей задається).
+				Приклад збереження даних
+			</p>
+			<img src="../img/task-6.png" alt="image">
+			<p>
+				Ответ:
+			</p>
+
+			<script>
+
+				const userMoney = parseInt(prompt(`Введите количество денег`))
+
+				const productsPrices = [1000, 20, 31]
+				const productsTitles = ['cheese', 'juice', 'bread']
+
+				const userCanBuy = []
+
+				for (let i = 0; i < productsPrices.length; i++) {
+					if (userMoney > productsPrices[i]) userCanBuy.push(productsTitles[i])
+				}
+
+				document.write(`Пользователь может купить ${userCanBuy}`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

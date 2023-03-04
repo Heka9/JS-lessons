@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-1</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 1</h3>
+			<p class="data">
+				Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він
+				відноситься (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є
+				хоча би одна трійка)).
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				function getAverageScore(array) {
+					let sum = 0
+
+					for (let i = 0; i < array.length; i++) {
+						sum += array[i]
+					}
+					return sum / array.length
+				}
+
+				function getStudentStatus(array) {
+					let status = ""
+
+					//если у нас есть функция для определения средней оценки (обе функции из примера используются в программе вместе) 
+					//в условии if еще раз запускаю функию, но можно было бы использовать пременную averageScore (она содержит результат работы функции для определения средней оценки)
+					if (getAverageScore(array) === 5) return status = "отличник"
+
+					for (let i = 0; i < array.length; i++) {
+
+						// если функции получения средней оценки нету тогда закомментированный if ниже вписываем в конструкцию if else на первое место 
+						// if (array[i] === 5) {
+						// 	status = "отличник"
+						// }
+						if (array[i] === 2) {
+							status = "двоечник"
+							break
+						} else if (array[i] === 3) {
+							status = "троечник"
+							break
+						} else status = "хорошист"
+					}
+
+					return status
+				}
+
+				const subjectsQuantity = parseInt(prompt(`Введите количество предметов`))
+				const subjectScoreValue = []
+
+				for (let i = 1; i <= subjectsQuantity; i++) {
+					const userScore = parseInt(prompt(`Введите оценку по ${i} предмету, от 2 до 5 балов`))
+					subjectScoreValue.push(userScore)
+				}
+
+				const averageScore = getAverageScore(subjectScoreValue)
+				const userStatus = getStudentStatus(subjectScoreValue)
+
+				document.write(`Средний бал пользователя ${averageScore}. Пользователь ${userStatus}`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

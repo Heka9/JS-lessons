@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-9</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 9</h3>
+			<p class="data">
+				Морський бій. Користувач вводить кількість клітинок одновимірного масиву та кількість одиночних кораблів.
+				Комп’ютер довільно розміщує ці одиночні кораблі у масиві по один у клітинці (якщо у клітинці 0, то клітинка
+				пуста, якщо 1 – то це означає, що там є корабель). Користувач вводить номер клітинки, куди стріляє. Гра
+				продовжується до тих пір, поки не будуть потоплені усі кораблі.
+			</p>
+			<p>
+				Ответ:
+				Користувач вводить кількість клітинок поля і кількість кораблів. Вам треба написати функцію, яка рандомно
+				розмістить ці кораблі на полі (тобто сформує масив з 0 і 1, де 0 - пусто, 1 - є корабель).
+				Коли поле буде сформовано, користувач вводить номер клітинки, куди стріляє... (якщо там 0, то промах, якщо 1
+				- потопив корабель. Гра продовжується до тих пір, поки не будуть потоплені всі кораблі на полі)
+			</p>
+			<script>
+
+				//получаю данные от пользователя
+				const userFieldsQuantity = parseInt(prompt(`Введите размер поля`))
+				let userShipsQuantity = parseInt(prompt(`Введите количество кораблей, не более чем ${userFieldsQuantity}`))
+
+				//описываю основную функцию
+				function createShipsField(ships, field) {
+					const result = []
+
+					// создаю массив из 0
+					for (let i = 0; i < field; i++) {
+						result.push(0)
+					}
+
+					// размещаю корабли в массиве
+					while (ships > 0) {
+						let randonValue = Math.floor(Math.random() * result.length)
+						if (result[randonValue] === 0) {
+							result[randonValue] = 1
+							ships--
+						}
+					}
+					return result
+				}
+
+				//вызываю функцию создания поля с кораблями
+				const shipsPosition = createShipsField(userShipsQuantity, userFieldsQuantity)
+
+				//запускаю цикл пока все корабли не будут потоплены
+				do {
+					let userShot = parseInt(prompt(`Введите поле для выстрела, от 1 до ${userFieldsQuantity}`)) - 1
+					if (shipsPosition[userShot] === 1) {
+						shipsPosition[userShot] = 0
+						userShipsQuantity--
+						alert(`Вы потопили корабль, осталось ${userShipsQuantity} кораблей`)
+					} else alert(`Вы промахнулись, осталось ${userShipsQuantity} кораблей`)
+
+				} while (userShipsQuantity > 0);
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-8</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 8</h3>
+			<p class="data">
+				Дано одновимірний масив, у якому зберігається певна виграшна сума (елементи заповнюються випадковим
+				чином значеннями від -500 до 500). Надаючи користувачу можливість вибирати номери елементів (поки він
+				не відмовиться). Знаходити сумарний виграш
+			</p>
+			<p>
+				Ответ:
+			</p>
+
+			<script>
+
+				const userArrayRange = parseInt(prompt(`Введите размер массива`))
+				const prizesArray = []
+
+				for (let i = 0; i < userArrayRange; i++) {
+					const randomArrayValue = -500 + Math.floor(Math.random() * (500 - (-500) + 1))
+					prizesArray.push(randomArrayValue)
+				}
+
+				let totalUserPrize = 0
+				let userAnswer
+
+				do {
+					let userChoose = parseInt(prompt(`Выберите ячейку, которую хотите открыть, от 1 до ${userArrayRange}`)) - 1
+
+					totalUserPrize += prizesArray[userChoose]
+
+					userAnswer = confirm(`Ваш выигрыш составил ${prizesArray[userChoose]}, общий выигрыш составляет ${totalUserPrize}. Хотите продолжить играть?`)
+
+				} while (userAnswer);
+
+				if (totalUserPrize >= 0)document.write(`Вы выиграли ${totalUserPrize} грн.`)
+				else document.write(`Вы проиграли ${totalUserPrize} грн.`)
+
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-5</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 5</h3>
+			<p class="data">
+				Дано послідовність оцінок учня. Підрахувати кількість:<br>
+				1) двійок<br>
+				2) кількість хороших оцінок (добре, відмінно);<br>
+				3) кількість оцінок, які нижче середнього.<br>
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const studentMarks = [2, 3, 3, 5, 5, 5, 3, 4, 3, 1, 2, 2, 3, 4, 5, 4, 4, 5,]
+
+				let counter2 = 0
+				let couter4And5 = 0
+				let lessThanAverage = 0
+
+				let avarageValue
+				let sumMarks = 0
+
+				for (let i = 0; i < studentMarks.length; i++) {
+
+					sumMarks += studentMarks[i]
+					avarageValue = sumMarks / studentMarks.length
+				}
+
+				for (let i = 0; i < studentMarks.length; i++) {
+					if (studentMarks[i] === 2) counter2++
+
+					if (studentMarks[i] > 3) couter4And5++
+
+					if (studentMarks[i] < avarageValue) lessThanAverage++
+				}
+
+				document.write(`Для примера использован следующий массив оценок: ${studentMarks}<br><br><br>`)
+				document.write(`Количество двоек = ${counter2}.<br>Количество хороших оценок (4,5) = ${couter4And5}.<br> Количество оценок ниже среднего = ${lessThanAverage} (средняя оценка = ${avarageValue})`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-3</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 3</h3>
+			<p class="data">
+				Дано масив імен учнів. З’ясувати скільки разів зустрічається ім’я «Іван».
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const studentsArray = ["Иван", "Иван", "не Иван", "Иван", "не Иван", "Иван", "не Иван", "Иван", "Иван", "не Иван", "не Иван", "Иван", "Иван", "не Иван", "Иван", "Иван", "не Иван"]
+
+				const inavQuantity = []
+
+				for (let i = 0; i < studentsArray.length; i++) {
+					if (studentsArray[i] === "Иван") inavQuantity.push(studentsArray[i])
+				}
+
+				document.write(`В данной задаче убрал ввечение информации через prompt, исходный массив внутри скрипта.<br> Имя Иван встречается ${inavQuantity.length} раз`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

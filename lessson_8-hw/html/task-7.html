@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-7</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 7</h3>
+			<p class="data">
+				Дано послідовність платіжок протягом року. Знайти сумарну кількість грошей за:<br>
+				1) за весь рік;<br>
+				2) у першій половині року;<br>
+				3) у другій половині року;<br>
+				4) за літо;<br>
+				5) за ІІ квартал;<br>
+				6) за парні місяці (з парними номерами);<br>
+				7) за місяці, які є початковими у сезоні (весна, літо, осінь, зима).
+			</p>
+			<p>
+				Ответ:
+			</p>
+
+			<script>
+
+				const yearUtilityBill = [2000, 3000, 1500, 1100, 800, 750, 950, 600, 500, 800, 1500, 1800]
+
+				let fullYearSum = 0
+				let firstPartYearSum = 0
+				let secondPartYearSum = 0
+				const summerMonthStartIndex = 5
+				let summerSum = 0
+				const secondQuarterStartIndex = 3
+				let secondQuarterSum = 0
+				let evenMonthSum = 0
+				let startSeasonMonthSum = 0
+
+				//1 за весь рік
+				for (let i = 0; i < yearUtilityBill.length; i++) {
+					fullYearSum += yearUtilityBill[i]
+				}
+				//2 у першій половині року
+				for (let i = 0; i < yearUtilityBill.length / 2; i++) {
+					firstPartYearSum += yearUtilityBill[i]
+				}
+				//3 у другій половині року
+				for (let i = yearUtilityBill.length / 2; i < yearUtilityBill.length; i++) {
+					secondPartYearSum += yearUtilityBill[i]
+				}
+				//4 за літо 
+				for (let i = summerMonthStartIndex; i < summerMonthStartIndex + 3; i++) {
+					summerSum += yearUtilityBill[i]
+				}
+				//5 за ІІ квартал 
+				for (let i = secondQuarterStartIndex; i < secondQuarterStartIndex + 3; i++) {
+					secondQuarterSum += yearUtilityBill[i]
+				}
+				//6 за парні місяці (з парними номерами)
+				for (let i = 0; i < yearUtilityBill.length; i++) {
+					if (i % 2 === 0) evenMonthSum += yearUtilityBill[i]
+				}
+				// //7 за місяці, які є початковими у сезоні (весна, літо, осінь, зима)
+				for (let i = 2; i < yearUtilityBill.length; i += 3) {
+					startSeasonMonthSum += yearUtilityBill[i]
+				}
+
+				document.write(`В задаче использован следующий массив ${yearUtilityBill}<br><br><br>`)
+				document.write(`Сума за весь рік = ${fullYearSum}.<br>Сума у першій половині року = ${firstPartYearSum}.<br>Сума у другій половині року = ${secondPartYearSum}.<br>Сума за літо = ${summerSum}.<br>Сума за ІІ квартал = ${secondQuarterSum}.<br>Сума за парні місяці (з парними номерами) = ${evenMonthSum}.<br>Сума за місяці, які є початковими у сезоні (весна, літо, осінь, зима) = ${startSeasonMonthSum}.`)
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

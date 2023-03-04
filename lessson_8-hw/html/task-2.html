@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-2</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 2</h3>
+			<p class="data">
+				Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:<br>
+				• номери днів, протягом яких кількість відвідувачів була меншою за 20;<br>
+				• номери днів, коли кількість відвідувачів була мінімальною;<br>
+				• номери днів, коли кількість відвідувачів була максимальною;<br>
+				• загальну кількість клієнтів у робочі дні та окремо загальну кількість клієнтів на вихідних.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				//	0. получаю данные от пользователя
+				const visitorsStatistic = []
+				const daysInWeek = 7
+
+				for (let i = 1; i <= daysInWeek; i++) {
+					const userValue = parseInt(prompt(`Введите количество посетителей за ${i} день`))
+					visitorsStatistic.push(userValue)
+				}
+
+				//	1. функция для получения дней, когда посетителей было меньше 20
+				function getLessThan20VisitorsDays(array) {
+					let result = []
+
+					for (let i = 0; i < array.length; i++) {
+						if (array[i] < 20) result.push(i + 1) //добавляю 1 так как индексы начинаются с 0
+					}
+
+					return result
+				}
+
+				//	2. функция для получения дней, когда посетителей было меньше всего
+				function getMinimumVisitorsDays(array) {
+					let result = []
+					let minValue = Infinity
+
+					//получаю минимальное значение в массиве
+					for (let i = 0; i < array.length; i++) {
+						if (array[i] < minValue) minValue = array[i]
+					}
+
+					//проверяю, если ли еще в массиве значения, которые равны минимальному и записываю все индексы таких значений в результирующий массив
+					for (let i = 0; i < array.length; i++) {
+						if (array[i] === minValue) result.push(i + 1) //добавляю 1 так как индексы начинаются с 0
+					}
+
+					return result
+				}
+
+				//	3. функция для получения дней, когда посетителей было больше всего
+				function getMaximumVisitorsDays(array) {
+					let result = []
+					let maxValue = -Infinity
+
+					//получаю максимальное значение в массиве
+					for (let i = 0; i < array.length; i++) {
+						if (array[i] > maxValue) maxValue = array[i]
+					}
+
+					//проверяю, если ли еще в массиве значения, которые равны максимальному и записываю все индексы таких значений в результирующий массив
+					for (let i = 0; i < array.length; i++) {
+						if (array[i] === maxValue) result.push(i + 1)//добавляю 1 так как индексы начинаются с 0
+					}
+
+					return result
+				}
+
+				//	4. функция для получения количества клиентов в рабочие дни
+				function getSumVisitorsWorkingDays(array) {
+					let workindDaysVisitorSum = 0
+
+					let maxWorkingDay = 5
+
+					//получаю сумму посетителей в рабочие дни
+					for (let i = 0; i < maxWorkingDay; i++) {
+						workindDaysVisitorSum += array[i]
+					}
+
+					return workindDaysVisitorSum
+				}
+
+				//	5. функция для получения количества клиентов в выходные дни
+				function getSumVisitorsRestDays(array) {
+					let restDaysVisitorSum = 0
+
+					let minRestDay = 6
+
+					//получаю сумму посетителей в выходные дни
+					for (let i = minRestDay - 1; i < array.length; i++) {
+						restDaysVisitorSum += array[i]
+					}
+
+					return restDaysVisitorSum
+				}
+
+
+				//	6. получаю необходимые отыеты в переменные
+				const less20VisitorsDays = getLessThan20VisitorsDays(visitorsStatistic)
+				const minimumVisitorsDays = getMinimumVisitorsDays(visitorsStatistic)
+				const maximumVisitorsDays = getMaximumVisitorsDays(visitorsStatistic)
+				const visitorsSumWorkingDays = getSumVisitorsWorkingDays(visitorsStatistic)
+				const visitorsSumRestDays = getSumVisitorsRestDays(visitorsStatistic)
+
+				//	7. вывожу ответы на страницу
+				document.write(`В ${less20VisitorsDays} дни посетителей было меньше 20.<br>В ${minimumVisitorsDays} дни посетителей было меньше всего.<br>В ${maximumVisitorsDays} дни посетителей было больше всего.<br>В рабочие дни было ${visitorsSumWorkingDays} посетителей.<br>В выходные дни было ${visitorsSumRestDays} посетителей.`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
