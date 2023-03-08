@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-6</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 6</h3>
+			<p class="data">
+			<p>Дано масив елементів. Усі елементи, які більші за перший елемент помножити на 2
+			</p>
+			<p>
+				Ответ:
+			</p>
+
+			<script>
+
+				const arr = [3, 2, -6, 0, 5, 9, 3, 4, -6, 1, 11]
+				document.write(`Использован следующий массив ${arr}<br> Первый элемент = ${arr[0]}<br><br>`)
+
+				function multiplyArrayElementsMoreThanFirst(array, firstArrayElementValue = array[0]) {
+					let multypliedArray = array.map((el) => {
+						if (el > firstArrayElementValue) return el * 2
+						else return el
+					})
+
+					return multypliedArray
+				}
+
+				let result = multiplyArrayElementsMoreThanFirst(arr)
+				document.write(`Итоговый массив ${result}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

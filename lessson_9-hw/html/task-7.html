@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-7</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 7</h3>
+			<p class="data">
+				Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за 1000 грн. дати 30% знижки.
+			</p>
+			<p>
+				Ответ:
+			</p>
+
+			<script>
+
+				const arr = [300, 800, 2000, 1000, 1100, 900, 300, 400, 1600, 1150, 2100]
+				document.write(`Использован следующий массив ${arr}<br><br>`)
+
+				function calculateDiscount(arrayWithoutDiscount, discountProcentValue = 30, discountBorder = 1000) {
+
+					arrayWithoutDiscount.forEach((item, index, array) => {
+						if (item > discountBorder) array[index] = item * (1 - discountProcentValue / 100)
+					})
+				}
+				calculateDiscount(arr)
+
+				document.write(`После работы функции массив имеет следующий вид ${arr}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-4</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 4</h3>
+			<p class="data">
+				Дано масив елементів. Вивести на екран елементи, що більші за 100
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const array = [100, 110, 50, 3, 0, -50, -150, 150, 500, 999]
+
+				document.write(`Использован следующий массив ${array}<br><br>`)
+
+				for (const element of array) {
+					if (element > 100) document.write(`${element}<br>`)
+				}
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

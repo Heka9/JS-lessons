@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-3</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 3</h3>
+			<p class="data">
+				Користувач вводить кількість елементів. Створити масив, у якому перші 5 елементів заповнені 1-цями, а інші
+				до кінця масиву заповнені 7-ками.
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const userArrayLength = parseInt(prompt(`Введите размер масива`))
+
+				function createArray(arrayLength, startArrayPartLength = 5, startArrayPartValue = 1, lastArrayPartValue = 7) {
+					let array = []
+
+					for (let i = 0; i < arrayLength; i++) {
+						if (i < startArrayPartLength) array.push(startArrayPartValue)
+						else array.push(lastArrayPartValue)
+					}
+					return array
+				}
+
+				let result = createArray(userArrayLength)
+
+				document.write(result)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

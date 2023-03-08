@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-10</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 10</h3>
+			<p class="data">
+				Дано масив цін у грн. Податок складає 20%. Сформувати масив, який буде містити величину сплаченого податку у
+				грн.
+			</p>
+			<p>
+				Ответ:
+			</p>
+			<script>
+
+				const arr = [32000, 8000, 21000, 11000, 11500, 8900, 33800, 21400, 13600, 18150, 21700]
+				document.write(`Использован следующий массив ${arr}<br><br>`)
+
+				function getTaxexValue(array, taxValue = 20) {
+					return array.map(el => el * (20 / 100))
+				}
+
+				let result = getTaxexValue(arr)
+				document.write(`Массив с размером уплаченных налогов = ${result}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

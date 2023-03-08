@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-8</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 8</h3>
+			<p class="data">
+				Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А»
+			</p>
+			<p>
+				Ответ:
+			</p>
+
+			<script>
+
+				const carNumbersArray = ['BВ1232', 'AВ1232', 'BА1232', 'AА1111', 'EЕ3322', 'AЕ1232', 'AВ0092', 'BВ1232', 'KК1002', 'KВ3452', 'AА7777']
+				document.write(`Использован следующий массив ${carNumbersArray}<br><br>`)
+
+				function getNumberStartWith_A(array) {
+					return array.filter(item => item[0].toLowerCase() == 'a')
+				}
+
+				let result = getNumberStartWith_A(carNumbersArray)
+
+				document.write(`Массив номеров, которые начинаются на 'A': ${result}`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
