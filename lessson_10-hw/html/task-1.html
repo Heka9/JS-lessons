@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-1</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача</h3>
+			<p class="data">
+				Дано історію цін на цінні папери за деякий період (згенерувати від 1 до 10000) <br> <br>
+			</p>
+			<script>
+				const arraySize = 10
+				const minStockPrice = 1
+				const maxStockPrice = 10000
+
+				function createStockPriceHistoryArray(arrayRange, minValue, maxValue) {
+					return array = new Array(arrayRange).fill(0).map(element => element = minValue + Math.floor(Math.random() * (maxValue - minValue + 1)))
+				}
+
+				const stockPriceArray = createStockPriceHistoryArray(arraySize, minStockPrice, maxStockPrice);
+				document.write(`<p><b>Для решения задач используется следующий массив - ${stockPriceArray}</b></p>`)
+
+				//1) Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.
+				document.write(`<p><b>1) Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.</b></p>`)
+
+				const pricesMoreThan_1000 = stockPriceArray.filter(price => price > 1000)
+
+				document.write(`<p>Массив со значениями выше 1000 грн. - ${pricesMoreThan_1000}</p>`)
+
+				//2) Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.
+				document.write(`<p><b>2) Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.</b></p>`)
+
+				const indexPricesMoreThan_1000 = []
+				stockPriceArray.filter((price, index) => {
+					if (price > 1000) indexPricesMoreThan_1000.push(index);
+				})
+
+				document.write(`<p>Массив индексов значений выше 1000 грн. - ${indexPricesMoreThan_1000}</p>`)
+
+				// решение с помощью reduce без использования глобальной переменной в виде пустого массива с ответами
+				// const indexPricesMoreThan1_1000 = stockPriceArray.reduce((acc, price, index) => {
+				// 	if (price > 1000) acc.push(index);
+				// 	return acc
+				// }, [])
+				// document.write(`<p>Массив индексов значений выше 1000 грн. - ${indexPricesMoreThan1_1000}</p>`)
+
+				//3) Сформувати список з тих цін, які більші за попереднє значення
+				document.write(`<p><b>3) Сформувати список з тих цін, які більші за попереднє значення.</b></p>`)
+
+				const prevValueMoreThanCurrent = stockPriceArray.reduce((prevValue, price, index, array) => {
+					if (price > array[index - 1]) prevValue.push(price)
+					return prevValue
+
+				}, [])
+
+				document.write(`<p>Список цен выше чем предыдущие значения. - ${prevValueMoreThanCurrent}</p>`)
+
+				// решение с помощью reduce и использованием глобальной переменной в виде пустого массива с ответами
+				// const prevValueMoreThanCurrentArray = []
+				// stockPriceArray.reduce((prevValue, price, index, array) => {
+				// 	if (price > prevValue) prevValueMoreThanCurrentArray.push(price)
+
+				// 	prevValue = price
+				// 	return prevValue
+
+				// },)
+				// document.write(`<p>Список ценвыше чем предыдущие значения - ${prevValueMoreThanCurrentArray}</p>`)
+
+				//4) Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального
+				document.write(`<p><b>4) Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального.</b></p>`)
+
+				const maxArrayValue = Math.max(...stockPriceArray)
+				document.write(`<p>Максимальное значение в массиве = ${maxArrayValue}</p>`)
+
+				const percentPriceValueFromMaxValue = stockPriceArray.map(element => `${(element / maxArrayValue * 100).toFixed(2)}% `)
+
+				document.write(`<p>Список значения цен в процентах относительно максимального = ${percentPriceValueFromMaxValue}</p>`)
+
+				//5) Підрахувати кількість змін цін
+				document.write(`<p><b>5) Підрахувати кількість змін цін</b></p>`)
+
+				const quntityPriceChange = stockPriceArray.reduce((prevValue, price, index, array) => {
+					if (price !== array[index - 1]) prevValue++
+					return prevValue
+
+				}, 0)
+
+				document.write(`<p>Количество изменения цены = ${quntityPriceChange}</p>`)
+
+				//6) Визначити, чи є ціна, що менше 1000
+				document.write(`<p><b>6) Визначити, чи є ціна, що менше 1000</b></p>`)
+
+				const isElementLessThan_1000 = stockPriceArray.some(element => element < 1000)
+
+				document.write(`<p>Есть ли в массиве элемент со значением ниже 1000? Ответ = ${isElementLessThan_1000}</p>`)
+
+				//7) Визначати, чи усі ціни більше за 1000
+				document.write(`<p><b>7) Визначати, чи усі ціни більше за 1000</b></p>`)
+
+				const isElementMoreThan_1000 = stockPriceArray.every(element => element > 1000)
+
+				document.write(`<p>В массиве все элементы выше 1000? Ответ = ${isElementMoreThan_1000}</p>`)
+
+				//8) Підрахувати кількість цін, що більше за 1000
+				document.write(`<p><b>8) Підрахувати кількість цін, що більше за 1000</b></p>`)
+
+				const pricesNumberAbove_1000 = stockPriceArray.reduce((acc, item) => {
+					if (item > 1000) acc++
+					return acc
+				}, 0)
+
+				document.write(`<p>В массиве ${pricesNumberAbove_1000} элементов со значением выше 1000</p>`)
+
+				//9) Підрахувати суму цін, що більше за 1000
+				document.write(`<p><b>9) Підрахувати кількість цін, що більше за 1000</b></p>`)
+
+				const sumPricesAbove_1000 = stockPriceArray.reduce((acc, item) => {
+					if (item > 1000) acc += item
+					return acc
+				}, 0)
+
+				document.write(`<p>Сумма цен выше 1000 составляет - ${sumPricesAbove_1000}</p>`)
+
+				//10) Знайти першу ціну, що більше за 8000
+				document.write(`<p><b>10) Знайти першу ціну, що більше за 8000</b></p>`)
+
+				const firstPriceAbove_8000 = stockPriceArray.find((item) => {
+					if (item > 8000) return item
+				})
+
+				document.write(`<p>Первая цена выше 8000 составляет = ${firstPriceAbove_8000}</p>`)
+
+				//11) Знайти індекс першої ціни, що більше за 1000
+				document.write(`<p><b>11) Знайти індекс першої ціни, що більше за 1000</b></p>`)
+
+				const firstPriceIndexAbove_1000 = stockPriceArray.findIndex((item) => {
+					return (item > 1000)
+				})
+
+				document.write(`<p>Индекс первой цены выше 1000 - ${firstPriceIndexAbove_1000}</p>`)
+
+				//12) Знайти останню ціну, що більше за 1000
+				document.write(`<p><b>12) Знайти останню ціну, що більше за 1000</b></p>`)
+
+				const lasrPriceAbove_1000 = stockPriceArray.findLast((item) => {
+					return (item > 1000)
+				})
+
+				document.write(`<p>Последняя цена выше 1000 = ${lasrPriceAbove_1000}</p>`)
+
+				//13) Знайти індекс останньої ціни, що більше за 1000
+				document.write(`<p><b>13) Знайти індекс останньої ціни, що більше за 1000</b></p>`)
+
+				const lasrPriceIndexAbove_1000 = stockPriceArray.findLastIndex((item) => {
+					return (item > 1000)
+				})
+
+				document.write(`<p>Индекс последней цены выше 1000 = ${lasrPriceIndexAbove_1000}</p>`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
