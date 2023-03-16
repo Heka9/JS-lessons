@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-1</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 1</h3>
+			<p class="data">
+				Знайти суми елементів у вказаній області<br><br>
+			</p>
+			<div>
+				<img src="../img/taks-1_01.png" alt="">
+				<img src="../img/task-1_02.png" alt="">
+				<img src="../img/task-1_03.png" alt="">
+				<img src="../img/task-1_04.png" alt="">
+			</div><br>
+			<p>
+				5) Суму парних рядків<br>
+				6) Суму непарних стовпців<br>
+				7) У парних рядках – непарні стовпці, у непарних – парні.
+			</p>
+
+			<script>
+
+				const array = [[32, 55, 22, 1, -5], [35, 9, -9, 0], [3, 5, 65, -4, 101], [3, 6, 94]]
+
+				document.write(`Исходный массив: [[${array[0]}], [${array[1]}], [${array[2]}], [${array[3]}]] <br><br>`)
+
+
+				// 1) ---------------------------------------------------------
+				let sum_1 = 0
+
+				for (let i = 0; i < Math.floor(array.length / 2); i++) {
+					for (let k = 0; k < Math.floor(array[i].length / 2); k++) {
+						sum_1 = sum_1 + array[i][k]
+					}
+				}
+				document.write(`1) Сумма массива по 1-й картинке составила: ${sum_1}<br>`)
+
+				// решение чере з for...of
+				// let sum = 0
+				// let elementIndex_1_lvl = 0
+
+				// for (let element_1_lvl of array) {
+				// 	let elementIndex_2_lvl = 0
+
+				// 	if (elementIndex_1_lvl < Math.floor(array.length / 2)) {
+
+				// 		for (let element_2_lvl of array[elementIndex_1_lvl]) {
+
+				// 			if (elementIndex_2_lvl < Math.floor(array.length / 2)) {
+				// 				sum = sum + array[elementIndex_1_lvl][elementIndex_2_lvl]
+				// 			}
+
+				// 			elementIndex_2_lvl++
+				// 		}
+				// 	}
+
+				// 	elementIndex_1_lvl++
+				// }
+				// console.log(sum);
+
+				// 2) ---------------------------------------------------------
+
+				let sum_2 = 0
+
+				for (let i = 0; i < Math.floor(array.length / 2); i++) {
+					for (let k = Math.floor(array[i].length / 2); k < array[i].length; k++) {
+						sum_2 = sum_2 + array[i][k]
+					}
+				}
+				document.write(`2) Сумма массива по 2-й картинке составила: ${sum_2}<br>`)
+
+				// 3) ---------------------------------------------------------
+
+				let sum_3 = 0
+
+				for (let i = Math.floor(array.length / 2); i < array.length; i++) {
+					for (let k = 0; k < Math.floor(array[i].length / 2); k++) {
+						sum_3 = sum_3 + array[i][k]
+					}
+				}
+				document.write(`3) Сумма массива по 3-й картинке составила: ${sum_3}<br>`)
+
+				// 4) ---------------------------------------------------------
+
+				let sum_4 = 0
+
+				for (let i = Math.floor(array.length / 2); i < array.length; i++) {
+					for (let k = Math.floor(array[i].length / 2); k < array[i].length; k++) {
+						sum_4 = sum_4 + array[i][k]
+					}
+				}
+				document.write(`4) Сумма массива по 4-й картинке составила: ${sum_4}<br>`)
+
+				// 5) ---------------------------------------------------------
+
+				let sum_5 = 0
+				for (let i = 0; i < array.length; i++) {
+					if (i % 2 === 0) {
+						for (let k = 0; k < array[i].length; k++) {
+							sum_5 = sum_5 + array[i][k]
+						}
+					}
+				}
+				document.write(`5) Сумма парных рядов составила: ${sum_5}<br>`)
+
+				// 6) ---------------------------------------------------------
+
+				let sum_6 = 0
+				for (let i = 0; i < array.length; i++) {
+					if (i % 2 !== 0) {
+						for (let k = 0; k < array[i].length; k++) {
+							sum_6 = sum_6 + array[i][k]
+						}
+					}
+				}
+				document.write(`6) Сумма непарных рядов составила: ${sum_6}<br>`)
+
+				// 7) ---------------------------------------------------------
+
+				let sum_7 = 0
+				for (let i = 0; i < array.length; i++) {
+					if (i % 2 === 0) {
+						for (let k = 0; k < array[i].length; k++) {
+							if (k % 2 !== 0)
+								sum_7 = sum_7 + array[i][k]
+						}
+					} else {
+						for (let k = 0; k < array[i].length; k++) {
+							if (k % 2 === 0)
+								sum_7 = sum_7 + array[i][k]
+						}
+					}
+				}
+				document.write(`7) Сумма непарных столбцов в парных рядах и парных столбцов в непарных рядах составила: ${sum_7}<br>`)
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

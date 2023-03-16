@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-2</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 2</h3>
+			<p class="data">
+				Дано інформацію про прибуток К магазинів протягом тижня. Знайти:<br><br>
+			</p>
+			<p>
+				1) загальний прибуток кожного масиву за тиждень;<br>
+				2) загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і
+				т.д.);<br>
+				3) загальний прибуток за робочі дні<br>
+				4) загальний прибуток за вихідні дні<br>
+				5) максимальний прибуток за середу<br>
+				6) сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200<br>
+				7) відсортувати кожен тиждень за зростанням<br>
+				8) відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при
+				порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків<br>
+				8) упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба
+				знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів
+				повинен іти раніше).<br>
+			</p>
+
+			<script>
+
+				const shopProfiteArray = [[220, 40, 35, 68, 249, 42, 15], [60, 1120, 15, 48, 49, 2, 5], [221, 50, 85, 68, 49, 6, 3]]
+
+				document.write(`Исходный массив: [[${shopProfiteArray[0]}], [${shopProfiteArray[1]}], [${shopProfiteArray[2]}]] <br><br>`)
+
+				// 1) ---------------------------------------------------------
+
+				let totalSum = shopProfiteArray.map(el => {
+					let sum = el.reduce((acc, element) => {
+						return acc += element
+					})
+					return sum
+				})
+
+				document.write(`1) Общая прибыль каждого магазина = ${totalSum}<br><br>`)
+
+				// 2) ---------------------------------------------------------
+
+				function getProfiteByDays(arrayWithProfite, day) {
+
+					let totalDaysSum = 0
+
+					for (let i = 0; i < arrayWithProfite.length; i++) {
+						totalDaysSum = totalDaysSum + arrayWithProfite[i][day]
+					}
+
+					return totalDaysSum
+				}
+
+				function createArrayProfiteByDays(arrayWithProfite, daysInWeek = 7) {
+
+					let totalArraySumByDays = []
+
+					for (let i = 0; i < daysInWeek; i++) {
+						let daySum = getProfiteByDays(arrayWithProfite, i)
+						totalArraySumByDays.push(daySum)
+					}
+
+					return totalArraySumByDays
+				}
+
+				const totalSumByDays = createArrayProfiteByDays(shopProfiteArray);
+
+				document.write(`2) Общая прибыль всех магазинов по дням = ${totalSumByDays}<br><br>`)
+
+				// 3) ---------------------------------------------------------
+
+				const profiteByWorkDays = shopProfiteArray.reduce((acc, el) => {
+					for (let i = 0; i < 6; i++) {
+						acc = acc + el[i]
+					}
+					return acc
+				}, 0)
+
+
+				// решение с глобальной переменной
+				// let profiteByWorkDays = 0
+
+				// for (let i = 0; i < shopProfiteArray.length; i++) {
+				// 	for (let k = 0; k < 6; k++) {
+				// 		profiteByWorkDays += shopProfiteArray[i][k]
+				// 	}
+				// }
+
+				document.write(`3) Общая прибыль всех магазинов за рабочие дни = ${profiteByWorkDays}<br><br>`)
+
+				// 4) ---------------------------------------------------------
+
+				const profiteByOffDays = shopProfiteArray.reduce((acc, el) => {
+					for (let i = 5; i < 7; i++) {
+						acc = acc + el[i]
+					}
+					return acc
+				}, 0)
+
+				document.write(`4) Общая прибыль всех магазинов за выходные дни = ${profiteByOffDays}<br><br>`)
+
+				// 5) ---------------------------------------------------------
+
+				function getMaxProfiteByDay(arrayWithProfiteByDays, day) {
+					let result = arrayWithProfiteByDays.reduce((acc, el, index) => {
+						let needDay = el.filter((el, ind) => ind === day)
+
+						return [...acc, needDay]
+					}, [])
+
+					return Math.max(...result)
+				}
+
+				const maxProfiteByDay = getMaxProfiteByDay(shopProfiteArray, 2)
+
+				document.write(`5) Максимальная прибыль за среду = ${maxProfiteByDay}<br><br>`)
+
+				// 6) ---------------------------------------------------------
+
+				const profiteMore_200 = []
+
+				for (let i = 0; i < shopProfiteArray.length; i++) {
+					for (let k = 0; k < shopProfiteArray[i].length; k++) {
+						if (shopProfiteArray[i][k] > 200) profiteMore_200.push(shopProfiteArray[i][k])
+					}
+				}
+
+				document.write(`6) Массив со значениями выше 200 = ${profiteMore_200}<br><br>`)
+
+				// 7) ---------------------------------------------------------
+
+				const arrayCopy_7 = JSON.parse(JSON.stringify(shopProfiteArray))
+
+				const sortProfite = arrayCopy_7.map(el => el.sort((a, b) => a - b))
+
+				document.write(`7) Отсортированные массивы по значениям = ${sortProfite}<br><br>`)
+
+				// 8) ---------------------------------------------------------
+
+				const arrayCopy_8 = JSON.parse(JSON.stringify(shopProfiteArray))
+
+				const sortProfiteByMaxValue = arrayCopy_8.sort((el1, el2) => Math.max(...el2) - Math.max(...el1))
+
+				document.write(`8) Отсортированные недели по спаданию максимального значения = ${sortProfiteByMaxValue}<br><br>`)
+
+				// 9) ---------------------------------------------------------
+
+				const arrayCopy_9 = JSON.parse(JSON.stringify(shopProfiteArray))
+
+				const sortProfiteBySum = arrayCopy_9.sort((el1, el2) => {
+					return el2.reduce((acc, el) => acc += el) - el1.reduce((acc, el) => acc += el)
+				})
+
+				document.write(`9) Отсортированный массив по спаданию суммы элементов подмассивов = ${sortProfiteBySum}<br><br>`)
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Task-3</title>
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="block__container">
+			<h3 class="title">Задача 3</h3>
+			<p class="data">
+				Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів.
+				Користувач стріляє вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у
+				користувача не закінчаться снаряди.<br><br>
+			</p>
+
+			<script>
+				function createTable(rowNum, colNum) {
+					document.write(`<table>`)
+					document.write(`<tbody>`)
+					for (let i = 0; i < rowNum; i++) {
+						document.write(`<tr>`)
+						for (let k = 0; k < colNum; k++) {
+							document.write(`<td></td>`)
+						}
+						document.write(`</td>`)
+					}
+					document.write(`</tbody>`)
+					document.write(`</table><br>`)
+				}
+
+				const xSizeField = 6
+				const ySizeField = 6
+
+				createTable(xSizeField, ySizeField)
+
+				function generateShipPosition(shipQuantity, xFieldSize, yFieldSize) {
+					let shipCounter = shipQuantity
+					let shipPositionArray = []
+
+					while (shipCounter > 0) {
+						let shipPosition = []
+						let xShipPosition = 1 + Math.floor(Math.random() * xFieldSize)
+						let yShipPosition = 1 + Math.floor(Math.random() * yFieldSize)
+
+						shipPosition.push(xShipPosition, yShipPosition)
+
+						if (shipPositionArray.find(el => el[0] === shipPosition[0] && el[1] === shipPosition[1])) {
+							continue
+						} else {
+							shipPositionArray.push(shipPosition)
+							shipCounter--
+						}
+					}
+
+					return shipPositionArray
+				}
+
+				let userShotsQuantity = parseInt(prompt(`Введите количество выстрелов`))
+				let userShipsQuantity = parseInt(prompt(`Введите количество кораблей`))
+
+				let shipPosition = generateShipPosition(userShipsQuantity, xSizeField, ySizeField)
+
+				do {
+
+					const userShotX = parseInt(prompt(`Введите координаты выстрела по горизонтали`))
+					const userShotY = parseInt(prompt(`Введите координаты выстрела по вертикали`))
+
+					let userShotArray = []
+					userShotArray.push(userShotX)
+					userShotArray.push(userShotY)
+
+					if (shipPosition.some(el => el[0] === userShotX && el[1] === userShotY)) {
+						userShipsQuantity--
+						userShotsQuantity--
+
+						const breakShipIndex = shipPosition.findIndex(el => el[0] === userShotX && el[1] === userShotY)
+
+						shipPosition.splice(breakShipIndex, 1)
+
+						alert(`Вы попали в корабль, осталось ${userShotsQuantity} выстрелов и ${userShipsQuantity} кораблей `)
+					} else {
+						userShotsQuantity--
+
+						alert(`Вы промахнулись, осталось ${userShotsQuantity} выстрелов и ${userShipsQuantity} кораблей `)
+					}
+
+				} while (userShotsQuantity > 0 && userShipsQuantity > 0);
+
+				if (userShotsQuantity === 0) {
+					document.write(`У вас закончились выстрелы, осталось непотопленных ${userShipsQuantity} кораблей<br>`)
+					document.write(`Корабли были расположены на следующих позициях:`)
+					for (let i = 0; i < shipPosition.length; i++) {
+						document.write(`[${shipPosition[i]}] `)
+					}
+				}
+				else if (userShipsQuantity === 0) document.write(`Вы потопили все корабли, у вас осталось ${userShotsQuantity} выстрелов<br>`)
+				else document.write(`Вы потопили послений корабль последним выстрелом<br>`)
+
+
+			</script>
+		</div>
+	</div>
+</body>
+
+</html>
