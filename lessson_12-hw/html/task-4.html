@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-4</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 4</h3>
+            <p class="data">
+               Для розглянутих методів сортування спробувати вивести етапи
+               сортування шляхом виведення відповідних таблиць за зразком.<br /><br />
+            </p>
+            <img src="../img/img-01.png" alt="" />
+            <p>
+               Тобто кожного разу після обміну елементів вивести поточний стан
+               масиву на екран.
+            </p>
+            <script>
+               function createArray(lenght, minValue, maxValue) {
+                  let array = []
+                  for (let i = 0; i < lenght; i++) {
+                     const randomValue =
+                        minValue +
+                        Math.floor(Math.random() * (maxValue - minValue + 1))
+                     array.push(randomValue)
+                  }
+                  return array
+               }
+
+               const arr = createArray(5, -50, 50)
+               document.write(
+                  `Использован данный массив с числами от -50 до 50, длинной в 5 элементов <br> ${arr}<br><br>`
+               )
+               let counter1 = 0
+               let counter2 = 0
+               let counter3 = 0
+
+               document.write(`<b>Сортировка пузырьком</b><br><br>`)
+               let arr1 = [...arr]
+               let changes
+               do {
+                  changes = false
+                  for (let i = 1; i < arr1.length; i++) {
+                     if (arr1[i - 1] > arr1[i]) {
+                        let temp = arr1[i - 1]
+                        arr1[i - 1] = arr1[i]
+                        arr1[i] = temp
+                        changes = true
+                     }
+                     counter1++
+                     document.write(`<i>${arr1}</i><br>`)
+                  }
+               } while (changes)
+               document.write(
+                  `Отсортированный массив: ${arr1},<br> понадобирось ${counter1} итераций<br><br>`
+               )
+               document.write(`<b>Сортировка перемешиванием</b><br><br>`)
+               let arr2 = [...arr]
+               let leftIndex = 0
+               let rightIndex = arr2.length - 1
+               while (leftIndex < rightIndex) {
+                  for (let i = leftIndex; i < rightIndex; i++) {
+                     if (arr2[i] > arr2[i + 1]) {
+                        let temp = arr2[i]
+                        arr2[i] = arr2[i + 1]
+                        arr2[i + 1] = temp
+                     }
+                     counter2++
+                     document.write(`<i>${arr2}</i><br>`)
+                  }
+                  rightIndex--
+                  for (let i = rightIndex; i > leftIndex; i--) {
+                     if (arr2[i] < arr2[i - 1]) {
+                        let temp = arr2[i]
+                        arr2[i] = arr2[i - 1]
+                        arr2[i - 1] = temp
+                     }
+                  }
+                  leftIndex++
+               }
+               document.write(
+                  `Отсортированный массив: ${arr2},<br> понадобирось ${counter2} итераций<br><br>`
+               )
+               document.write(`<b>Сортировка вставками</b><br><br>`)
+               let arr3 = [...arr]
+
+               for (let k = 1; k < arr3.length; k++) {
+                  let cur = arr3[k]
+                  let i = k - 1
+                  while (i >= 0 && arr3[i] > cur) {
+                     document.write(`<i>${arr3}</i><br>`)
+
+                     arr3[i + 1] = arr3[i]
+                     i--
+                     counter3++
+                  }
+                  arr3[i + 1] = cur
+               }
+               document.write(
+                  `Отсортированный массив: ${arr3},<br><br> понадобирось ${counter3} итераций`
+               )
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

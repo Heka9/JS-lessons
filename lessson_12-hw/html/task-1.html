@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-1</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 1</h3>
+            <p class="data">
+               Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час
+               сортування бульбашкою<br /><br />
+            </p>
+            <script>
+               function createArray(lenght, minValue, maxValue) {
+                  let array = []
+                  for (let i = 0; i < lenght; i++) {
+                     const randomValue =
+                        minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+                     array.push(randomValue)
+                  }
+                  return array
+               }
+
+               const arr = createArray(30, -50, 50)
+               document.write(
+                  `В данном примере использован данный массив с числами от -50 до 50, длинной в 30 элементов <br> ${arr}<br><br>`
+               )
+               console.log(arr)
+               let counter = 0
+               let changes
+               do {
+                  changes = false
+                  for (let i = 1; i < arr.length; i++) {
+                     if (arr[i - 1] > arr[i]) {
+                        let temp = arr[i - 1]
+                        arr[i - 1] = arr[i]
+                        arr[i] = temp
+                        changes = true
+                     }
+                     counter++
+                  }
+               } while (changes)
+               console.log(arr)
+               console.log(counter)
+               document.write(
+                  `Отсортированный массив: ${arr},<br><br> понадобирось ${counter} итераций`
+               )
+
+               // реализация через 2 цикла фор
+               // const arr1 = [...arr]
+               // let counter1 = 0
+               // for (let i = 0; i < arr1.length; i++) {
+               //    for (let k = 0; k < arr1.length; k++) {
+               //       if (arr1[k + 1] < arr1[k]) {
+               //          let temp = arr1[k]
+               //          arr1[k] = arr1[k + 1]
+               //          arr1[k + 1] = temp
+               //       }
+               //       counter1++
+               //    }
+               // }
+               // console.log(arr1)
+               // console.log(counter1)
+               //
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

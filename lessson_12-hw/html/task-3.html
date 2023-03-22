@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-3</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 3</h3>
+            <p class="data">
+               Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів під час
+               сортування включеннями.<br /><br />
+            </p>
+
+            <script>
+               function createArray(lenght, minValue, maxValue) {
+                  let array = []
+                  for (let i = 0; i < lenght; i++) {
+                     const randomValue =
+                        minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+                     array.push(randomValue)
+                  }
+                  return array
+               }
+
+               const arr = createArray(30, -50, 50)
+               document.write(
+                  `В данном примере использован данный массив с числами от -50 до 50, длинной в 30 элементов <br> ${arr}<br><br>`
+               )
+               console.log(arr)
+               let counter = 0
+               for (let k = 1; k < arr.length; k++) {
+                  let cur = arr[k]
+                  let i = k - 1
+                  while (i >= 0 && arr[i] > cur) {
+                     arr[i + 1] = arr[i]
+                     i--
+                     counter++
+                  }
+                  arr[i + 1] = cur
+               }
+               console.log(arr)
+               console.log(counter)
+               document.write(
+                  `Отсортированный массив: ${arr},<br><br> понадобирось ${counter} итераций`
+               )
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

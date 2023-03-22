@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-5</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 5</h3>
+            <p class="data">
+               Дано масив імен. Застосовуючи відповідне сортування та бінарний
+               пошук визначити, чи є у масиві ім’я «Olga» і під яким
+               індексом.<br /><br />
+            </p>
+
+            <script>
+               const arr = [
+                  'Peter',
+                  'Alex',
+                  'Filip',
+                  'John',
+                  'Ivan',
+                  'Olga',
+                  'Olia',
+                  'Igor',
+                  'Roman',
+                  'Tomas',
+               ]
+               document.write(
+                  `В данном примере использован данный массив с именами <br> ${arr}<br><br>`
+               )
+               console.log(arr)
+               for (let k = 1; k < arr.length; k++) {
+                  let cur = arr[k]
+                  let i = k - 1
+                  while (i >= 0 && arr[i] > cur) {
+                     arr[i + 1] = arr[i]
+                     i--
+                  }
+                  arr[i + 1] = cur
+               }
+               console.log(arr)
+               document.write(`Отсортированный массив: ${arr},<br><br>`)
+
+               const searchElement = 'Olga'
+               function binarySearch(array, element) {
+                  let start = 0
+                  let end = array.length - 1
+                  while (start <= end) {
+                     const middle = Math.floor((start + end) / 2)
+                     if (element === array[middle]) return middle
+                     else if (element < array[middle]) end = middle - 1
+                     else start = middle + 1
+                  }
+                  return -1
+               }
+               const result = binarySearch(arr, searchElement)
+               if (result >= 0)
+                  document.write(
+                     `Элемент со значением ${searchElement} находится под ${result} индексом`
+                  )
+               else
+                  document.write(
+                     `Элемент со значением ${searchElement} не найден в массиве`
+                  )
+            </script>
+         </div>
+      </div>
+   </body>
+</html>
