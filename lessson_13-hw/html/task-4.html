@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-4</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 4</h3>
+            <p class="data">
+               З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по одну букву наперед заданого слова. З використанням нього розробити гру
+               «Прекладач». Виводимо для користувача опис цього слова і по одну букву користувач вводить переклад цього слова. Підрахувати кількість вгаданих букв.<br /><br />
+            </p>
+
+            <script>
+               function showWord(word) {
+                  // let letterCounter = -1
+                  function showLetter() {
+                     // letterCounter++
+                     // return word[letterCounter]
+                     return guessedLettersCounter + (showedLetterCounter - 1) < word.length ? word[guessedLettersCounter + (showedLetterCounter - 1)] : 'Все буквы показаны'
+                     // втоая часть тернарного оператора никогда не будет выведена (ограиничил условием выполнения цикла)
+                  }
+                  return showLetter
+               }
+               const word = 'thread'
+               const wordLetterArray = word.split('') // для красоты вывода ответа
+               const userWord = new Array(word.length).fill('') // массив с уже отгаданными буквами слова
+
+               let showedLetterCounter = 1 // количество показанных букв замкнутой функцией
+               let userLetter
+               let userAnswer
+               let guessedLettersCounter = 0 // количество отгаданных букв пользователем
+
+               const showMoreLetters = showWord(word)
+
+               while (guessedLettersCounter + (showedLetterCounter - 1) < word.length) {
+                  userLetter = prompt(`Как называется один из компонентов контекста выполнения любой программы в JS ... of execution?`)
+                  const knownLettersQuantity = guessedLettersCounter + (showedLetterCounter - 1)
+                  const userLowerCaseLetter = userLetter.toLowerCase()
+                  if (userLetter) {
+                     if (word.includes(userLowerCaseLetter) && !userWord.includes(userLowerCaseLetter)) {
+                        const guessedLetterIndex = wordLetterArray.findIndex((el) => el === userLowerCaseLetter)
+                        console.log(guessedLetterIndex)
+                        userWord[guessedLetterIndex] = userLetter
+                        alert(`Такая буква есть в слове, ваше слово ${userWord}`)
+                        guessedLettersCounter++
+                     } else {
+                        alert(`Вы ошиблись, такой буквы нет в слове`)
+                        userAnswer = confirm(`Показать ${knownLettersQuantity + 1} букву в слове?`)
+                        if (userAnswer) {
+                           alert(`${knownLettersQuantity + 1} буква = ${showMoreLetters()}`)
+                           userWord[knownLettersQuantity] = wordLetterArray[knownLettersQuantity]
+                           showedLetterCounter++
+                           userAnswer = false
+                        }
+                     }
+                  }
+               }
+
+               if (guessedLettersCounter + (showedLetterCounter - 1) >= word.length) {
+                  alert(`Открыты все буквы слова, самостоятельно угадано ${guessedLettersCounter} букв, загаданное слово было ${word}`)
+               }
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

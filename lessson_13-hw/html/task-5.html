@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-5</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 5</h3>
+            <p class="data">Тренажер додавання. Кожні 10 секунд користувачу задають випадковий приклад з додавання двох цифр і робиться перевірка.<br /><br /></p>
+
+            <script>
+               // без привязки по времени к ответу
+               function getCalc(minValue, maxValue) {
+                  function calc() {
+                     let firstNumber = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+                     let secondNumber = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+                     const userAnswer = parseInt(prompt(`Сумма ${firstNumber} + ${secondNumber} = `))
+                     minValue--
+                     maxValue++
+                     counter++
+                     if (counter === 5) {
+                        clearInterval(startCalc)
+                     }
+                     return firstNumber + secondNumber === userAnswer ? alert(`Правильно`) : alert(`Не правильно`)
+                  }
+                  return calc
+               }
+
+               let counter = 0
+               const userRemember = getCalc(5, 10)
+               const startCalc = setInterval(userRemember, 5000)
+
+               // с привязкой по времени к ответу
+               // function getCalc(minValue, maxValue) {
+               //    function calc() {
+               //       let firstNumber = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+               //       let secondNumber = minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+               //       const userAnswer = parseInt(prompt(`Сумма ${firstNumber} + ${secondNumber} = `))
+               //       minValue--
+               //       maxValue++
+               //       counter++
+               //       if (counter === 5) {
+               //          clearTimeout(startCalc)
+               //       } else setTimeout(userRemember, 3000)
+               //       return firstNumber + secondNumber === userAnswer ? alert(`Правильно`) : alert(`Не правильно`)
+               //    }
+               //    return calc
+               // }
+
+               // let counter = 0
+               // const userRemember = getCalc(5, 10)
+               // const startCalc = setTimeout(userRemember, 5000)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

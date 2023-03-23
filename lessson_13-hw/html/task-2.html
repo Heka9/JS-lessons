@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-2</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 2</h3>
+            <div><img src="../img/task-02.png" alt="" /></div>
+            <br />
+
+            <script>
+               // решение с рекурсией
+               function getCalcWithRecursion(n) {
+                  if (n < 2) return 1
+                  else return getCalcWithRecursion(n - 1) + 2 * getCalcWithRecursion(n - 2)
+               }
+               const recursionResult = getCalcWithRecursion(10)
+               document.write(`Результат выполнения задачи рекурсивным способом составляет ${recursionResult}<br>`)
+
+               // решение с нерекурсивным алгоритмом
+               function getCalcWithoutRecursion(n) {
+                  let curSum = 1
+                  let prevSum = 1
+                  let i = 2
+                  while (i <= n) {
+                     let temp = curSum
+                     curSum = curSum + 2 * prevSum
+                     prevSum = temp
+                     i++
+                  }
+                  return curSum
+               }
+               const withoutRecursionResult = getCalcWithoutRecursion(10)
+               document.write(`Результат выполнения задачи нерекурсивным способом составляет ${withoutRecursionResult}`)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

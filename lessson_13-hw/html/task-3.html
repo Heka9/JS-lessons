@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-3</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 3</h3>
+            <p class="data">
+               З використанням замикань розробити ітератор, тобто функцію, що буде поступово за окремими викликами видавати по одне значення від заданого мінімального до заданого максимального. Якщо
+               значення досягне максимального, то наступним буде мінімальне значення. З використанням цієї функції реалізувати перебір номерів місяців. <br /><br />
+            </p>
+
+            <script>
+               function monthCounter(startValue, endValue, step) {
+                  let currentValue = startValue - step
+                  function counter() {
+                     if (currentValue === endValue) currentValue = startValue
+                     else currentValue += step
+                     return currentValue
+                  }
+                  return counter
+               }
+               const increaseCounter = monthCounter(1, 12, 1)
+
+               let goMore = true
+               while (goMore) {
+                  let userAction = confirm(`Сейчас ${increaseCounter()} месяц, нажмите OK, для перехода к следующему месяцу`)
+                  if (!userAction) goMore = false
+               }
+            </script>
+         </div>
+      </div>
+   </body>
+</html>
