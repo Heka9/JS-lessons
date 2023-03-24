@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-1</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 1</h3>
+            <p>
+               Описати масив об’єктів – сайтів розроблених компанією з такими властивостями <br /><br />
+               ----- Властивості ------<br /><br />
+               - назва компанії на час розробки (назву періодично змінюють)<br />
+               - власник компанії<br />
+               - споснсори (масив спонсорів) * прізвище спонсора * ім’я спонсора * сума вкладень спонсора<br />
+               - рік випуску<br />
+               - вартість сайту<br /><br />
+               Знайти:<br /><br />
+               1) загальну вартість усіх сайтів<br />
+               2) кількість сайтів, що було зроблено між 2000 та 2009 рр.<br />
+               3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000<br />
+               4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)<br />
+               5) знайти рік, коли прибуток був найбільшим<br />
+               6) упорядкувати список за спаданням прибутку<br />
+               7) Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000<br />
+            </p>
+            <br />
+            <script>
+               const siteInfo1 = {
+                  title: 'Apple',
+                  owner: 'Rich Man 1',
+                  sponsors: [
+                     {
+                        surname: 'Babaev',
+                        name: 'Alex',
+                        sum: 20000,
+                     },
+                     {
+                        surname: 'Macron',
+                        name: 'Filip',
+                        sum: 15000,
+                     },
+                  ],
+                  releaseYear: 1998,
+                  price: 2500,
+               }
+               const siteInfo2 = {
+                  title: 'Open AI',
+                  owner: 'Rich Man 2',
+                  sponsors: [
+                     {
+                        surname: 'Golubeva',
+                        name: 'Irina',
+                        sum: 16500,
+                     },
+                     {
+                        surname: 'Gaits',
+                        name: 'Bill',
+                        sum: 8000,
+                     },
+                     {
+                        surname: 'Rivz',
+                        name: 'Kianu',
+                        sum: 42000,
+                     },
+                  ],
+                  releaseYear: 2005,
+                  price: 5200,
+               }
+               const siteInfo3 = {
+                  title: 'Microsoft',
+                  owner: 'Rich Man 3',
+                  sponsors: [
+                     {
+                        surname: 'Willis',
+                        name: 'Bruse',
+                        sum: 10000,
+                     },
+                     {
+                        surname: 'Shechenko',
+                        name: 'Andriy',
+                        sum: 25000,
+                     },
+                     {
+                        surname: 'Oleksander',
+                        name: 'Zinchenko',
+                        sum: 37000,
+                     },
+                     {
+                        surname: 'Incognito',
+                        name: 'Ivan',
+                        sum: 10000,
+                     },
+                     {
+                        surname: 'Smith',
+                        name: 'Raul',
+                        sum: 32000,
+                     },
+                  ],
+                  releaseYear: 2002,
+                  price: 4000,
+               }
+               const siteInfo4 = {
+                  title: 'Rozetka',
+                  owner: 'Rich Man 4',
+                  sponsors: [
+                     {
+                        surname: 'Kozak',
+                        name: 'Taras',
+                        sum: 20000,
+                     },
+                  ],
+                  releaseYear: 2015,
+                  price: 1500,
+               }
+               const sitesArray = []
+               sitesArray.push(siteInfo1)
+               sitesArray.push(siteInfo2)
+               sitesArray.push(siteInfo3)
+               sitesArray.push(siteInfo4)
+               console.log(sitesArray)
+
+               document.write(`Массив объектов выведен в консоль<br /><br />`)
+
+               // 1) загальну вартість усіх сайтів
+               document.write(`1) загальну вартість усіх сайтів <br />`)
+               const totalSitesPrice = sitesArray.reduce((prevValue, site) => prevValue + site.price, 0)
+               document.write(`Загальну вартість усіх сайтів = <strong>${totalSitesPrice}</strong><br /><br />`)
+
+               // 2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+               document.write(`2) кількість сайтів, що було зроблено між 2000 та 2009 рр.<br />`)
+               const releasedSitesQunatity = sitesArray.reduce((prevValue, site) => (site.releaseYear > 2000 && site.releaseYear < 2009 ? ++prevValue : prevValue), 0)
+               document.write(`Кількість сайтів, що було зроблено між 2000 та 2009 рр. = <strong>${releasedSitesQunatity}</strong><br /><br />`)
+
+               // 3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+               document.write(`3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000<br />`)
+               const sitesQuantityAbove_100000SponsorsSum = sitesArray
+                  .map((site) => site.sponsors.reduce((prevSum, sponsor) => (prevSum += sponsor.sum), 0))
+                  .reduce((prevValue, element) => (element > 100000 ? ++prevValue : prevValue), 0)
+               document.write(`Кількість сайтів, де сума спонсорських вкладень була більшою за 100000 = <strong>${sitesQuantityAbove_100000SponsorsSum}</strong><br /><br />`)
+
+               // 4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+               document.write(`4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)<br />`)
+
+               const sponsorsArray = sitesArray.reduce((totalList, site) => {
+                  if ('sponsors' in site) {
+                     for (const sponsor of site.sponsors) {
+                        totalList.push(sponsor)
+                     }
+                  }
+                  return totalList
+               }, [])
+
+               document.write(`Загальний список усіх спонсорів вивів у консоль, рядок 160<br /><br />`)
+               console.log(sponsorsArray)
+
+               // 5) знайти рік, коли прибуток був найбільшим
+               document.write(`5) знайти рік, коли прибуток був найбільшим<br />`)
+
+               let maxProfite = sitesArray[0].price
+               let greaterYearProfite = sitesArray[0].releaseYear
+
+               for (let i = 1; i < sitesArray.length; i++) {
+                  if (sitesArray[i].price > maxProfite) {
+                     maxProfite = sitesArray[i].price
+                     greaterYearProfite = sitesArray[i].releaseYear
+                  }
+               }
+
+               document.write(`Рік, коли прибуток був найбільшим = <strong>${greaterYearProfite}</strong><br /><br />`)
+
+               // 6) упорядкувати список за спаданням прибутку
+               document.write(`6) упорядкувати список за спаданням прибутку<br />`)
+
+               const sortedSitesArrayByProfit = JSON.parse(JSON.stringify(sitesArray)).sort((site1, site2) => {
+                  return site2.price - site1.price
+               })
+
+               document.write(`Упорядкований список за спаданням прибутку вивів у консоль, рядок 185<br /><br />`)
+               console.log(sortedSitesArrayByProfit)
+
+               // 7) створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+               document.write(`7) створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000<br />`)
+
+               const sitesPriceLess_10000 = JSON.parse(JSON.stringify(sitesArray)).filter((site) => site.price < 10000)
+               const sitesPriceLarger_10000 = JSON.parse(JSON.stringify(sitesArray)).filter((site) => site.price > 10000)
+
+               document.write(`Списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000 вивів у консоль, рядки 194 та 195<br /><br />`)
+               console.log(sitesPriceLess_10000)
+               console.log(sitesPriceLarger_10000)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

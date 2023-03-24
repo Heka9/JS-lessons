@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-2</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 2</h3>
+            <p>Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців.</p>
+            <br />
+
+            <script>
+               function getYear({ month: currentMonth, year }, monthQuantity) {
+                  // const addedYears = ((currentMonth - 1 + monthQuantity) % (12 - 1 + 1)) + 1
+                  const addedYears = Math.floor((currentMonth + monthQuantity) / 12)
+                  return year + addedYears
+               }
+               const timeInfo = {
+                  day: 25,
+                  month: 3,
+                  year: 2023,
+               }
+               const n = parseInt(prompt(`Введіть кількість місяців`))
+               const result = getYear(timeInfo, n)
+
+               document.write(`Через ${n} місяців буде ${result} рік`)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>
