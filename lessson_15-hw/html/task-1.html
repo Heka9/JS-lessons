@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-1</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 1</h3>
+            <p>Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.</p>
+            <div>
+               <img src="../img/task-01.png" alt="" />
+            </div>
+            <script>
+               function Range(rabbitsArraySize) {
+                  this.rabbitsArray = []
+                  this.rabbitsArraySize = rabbitsArraySize
+                  this.createRabbitsPosition()
+                  this.rabbitsQauntity = this.rabbitsArray.filter((el) => el === 1).length
+               }
+               Range.prototype.getRandomNumber = function () {
+                  return Math.floor(Math.random() * 2)
+               }
+               Range.prototype.createRabbitsPosition = function () {
+                  for (let i = 0; i < this.rabbitsArraySize; i++) {
+                     this.rabbitsArray.push(this.getRandomNumber())
+                  }
+               }
+               Range.prototype.shot = function () {
+                  do {
+                     let userShot = parseInt(prompt(`Введите поля для выстрела, от 1 до ${this.rabbitsArraySize}`))
+                     if (isNaN(userShot)) {
+                        break
+                     } else {
+                        if (this.rabbitsArray[userShot - 1] === 1) {
+                           alert(`Вы попали в кролика`)
+                           this.rabbitsQauntity--
+                        } else alert(`Вы промазали`)
+                     }
+                  } while (this.rabbitsQauntity > 0)
+                  if (this.rabbitsQauntity === 0) document.write(`Вы словили всех кроликов`)
+               }
+               // Range.prototype.showRabbitsField = function () {
+               //    return document.write(`${this.rabbitsArray}`)
+               // }
+               const game = new Range(5)
+               console.log(game)
+               // game.shot()
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

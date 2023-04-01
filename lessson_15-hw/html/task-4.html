@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-4</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 4</h3>
+            <p>Розробити клас Baner</p>
+            <div>
+               <img src="../img/task-04.png" alt="" />
+            </div>
+
+            <script>
+               //c помощью функции-фабрики
+               function createBaner(initSitesList) {
+                  return {
+                     sitesList: initSitesList,
+                     getRandomNumber: function () {
+                        return Math.floor(Math.random() * this.sitesList.length)
+                     },
+                     showRandomSite: function () {
+                        return this.sitesList[this.getRandomNumber()]
+                     },
+                     showRandomBaner: function () {
+                        const randomNumber = this.getRandomNumber()
+                        document.write(`
+                                     <div>
+                                        <a href="${this.sitesList[randomNumber].link}">
+                                           <img src="${this.sitesList[randomNumber].image}" width="200px" />
+                                        </a>
+                                     </div>
+                                  `)
+                     },
+                  }
+               }
+
+               const sitesArray = [
+                  {
+                     image: '../img/task-04-1.png',
+                     link: 'https://www.ferrari.com/en-UA',
+                  },
+                  {
+                     image: '../img/task-04-2.png',
+                     link: 'https://www.microsoft.com/uk-ua',
+                  },
+                  {
+                     image: '../img/task-04-3.png',
+                     link: 'https://www.youtube.com/',
+                  },
+               ]
+
+               const baner = createBaner(sitesArray)
+
+               console.log(baner)
+               // console.log(baner.showRandomSite())
+               // baner.showRandomBaner()
+
+               //========================================================================================================================================================
+               // с помощью функции-констректора, массив тот же
+
+               // function Baner(initSitesList) {
+               //    this.sitesList = initSitesList
+               // }
+               // Baner.prototype.getRandomNumber = function () {
+               //    return Math.floor(Math.random() * this.sitesList.length)
+               // }
+               // Baner.prototype.showRandomSite = function () {
+               //    return this.sitesList[this.getRandomNumber()]
+               // }
+               // Baner.prototype.showRandomBaner = function () {
+               //    const randomNumber = this.getRandomNumber()
+               //    document.write(`
+               //                       <div>
+               //                          <a href="${this.sitesList[randomNumber].link}">
+               //                             <img src="${this.sitesList[randomNumber].image}" width="200px" />
+               //                          </a>
+               //                       </div>
+               //                    `)
+               // }
+
+               // const baner2 = new Baner(sitesArray)
+               // console.log(baner2)
+               // console.log(baner2.showRandomSite())
+               // baner2.showRandomBaner()
+
+               //========================================================================================================================================================
+               //c помощью синтаксиса класса
+
+               // class BanerClass {
+               //    constructor(initSitesList) {
+               //       this.sitesList = initSitesList
+               //    }
+               //    getRandomNumber() {
+               //       return Math.floor(Math.random() * this.sitesList.length)
+               //    }
+               //    showRandomSite() {
+               //       return this.sitesList[this.getRandomNumber()]
+               //    }
+               //    showRandomBaner() {
+               //       const randomNumber = this.getRandomNumber()
+               //       document.write(`
+               //                       <div>
+               //                          <a href="${this.sitesList[randomNumber].link}">
+               //                             <img src="${this.sitesList[randomNumber].image}" width="200px" />
+               //                          </a>
+               //                       </div>
+               //                    `)
+               //    }
+               // }
+               // const baner3 = new BanerClass(sitesArray)
+               // console.log(baner3)
+               // console.log(baner3.showRandomSite())
+               // baner3.showRandomBaner()
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

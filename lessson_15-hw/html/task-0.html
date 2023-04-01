@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-0</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 0</h3>
+            <p>
+               Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з них є функція знаходження суми,
+               а у іншому – функція для знаходження добутку тих, які знаходяться між заданими мінімальним і максимальних
+               значенням. Використати обидва методи стосовно обидвох об’єктів (використати call, apply)
+            </p>
+            <br />
+            <script>
+               const object1 = {
+                  id: 1,
+                  numbersList: [10, 15, 20, 12, 17],
+                  getSum: function () {
+                     return this.numbersList.reduce((prevSum, number) => prevSum + number)
+                  },
+                  toString: function () {
+                     return `Объект ${this.id} содержит следующий массив чисел: ${this.numbersList}`
+                  },
+               }
+
+               const object2 = {
+                  id: 2,
+                  numbersList: [55, 23, 12, 6, 18],
+                  getProduct: function (minValue, maxValue) {
+                     return this.numbersList.reduce(
+                        (prevProduct, number) =>
+                           number > minValue && number < maxValue ? prevProduct * number : prevProduct,
+                        1
+                     )
+                  },
+                  toString: function () {
+                     return `Объект ${this.id} содержит такой массив чисел: ${this.numbersList}`
+                  },
+               }
+
+               document.write(`${object1}<br> и состоит из следующий свойств: <br>`)
+               for (const property in object1) {
+                  document.write(`${property} <br>`)
+               }
+               document.write(`<br>`)
+               document.write(`${object2}<br>  и состоит из следующий свойств: <br>`)
+               for (const property in object2) {
+                  document.write(`${property} <br>`)
+               }
+               document.write(`<br>`)
+
+               const productObject1Call = object2.getProduct.call(object1, 10, 20)
+               document.write(
+                  `Произведение чисел (больше 10 и меньше 20) из первого объекта с помощью call = ${productObject1Call}<br>`
+               )
+               const productObject1Apply = object2.getProduct.apply(object1, [10, 20])
+               document.write(
+                  `Произведение чисел (больше 10 и меньше 20) из первого объекта с помощью apply = ${productObject1Call}<br>`
+               )
+               document.write(`<br>`)
+
+               const sumObject2Call = object1.getSum.call(object2)
+               document.write(`Сумма чисел из второго объекта с помощью call = ${sumObject2Call}<br>`)
+               const sumObject2Apply = object1.getSum.apply(object2)
+               document.write(`Сумма чисел из второго объекта с помощью apply = ${sumObject2Apply}<br>`)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

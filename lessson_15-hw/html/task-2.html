@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-2</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 2</h3>
+            <p>Створити об’єкт «Авто».</p>
+            <div>
+               <img src="../img/task-02.png" alt="" />
+            </div>
+
+            <script>
+               // создание с помощью функции-конструктора
+               function Car(title, sizeGasTank, currentGas, sittingPlaceQuantity, passangersQuantity) {
+                  this.title = title
+                  this.sizeGasTank = sizeGasTank
+                  this.currentGas = currentGas
+                  this.sittingPlaceQuantity = sittingPlaceQuantity
+                  this.passangersQuantity = passangersQuantity
+               }
+               Car.prototype.refill = function (value) {
+                  this.currentGas + value
+               }
+               Car.prototype.showSittingPlaceQunatity = function () {
+                  return this.sittingPlaceQuantity
+               }
+               Car.prototype.increasePassangers = function (value) {
+                  this.passangersQuantity + value
+               }
+               Car.prototype.decreasePassangers = function (value) {
+                  this.passangersQuantity - value
+               }
+
+               const car = new Car('Mersedes', 50, 30, 16, 14)
+               console.log(car)
+
+               // создание с помощью класса
+               class Car1 {
+                  constructor(title, sizeGasTank, currentGas, sittingPlaceQuantity, passangersQuantity) {
+                     this.title = title
+                     this.sizeGasTank = sizeGasTank
+                     this.currentGas = currentGas
+                     this.sittingPlaceQuantity = sittingPlaceQuantity
+                     this.passangersQuantity = passangersQuantity
+                  }
+                  refill(value) {
+                     this.currentGas + value
+                  }
+                  showSittingPlaceQunatity() {
+                     return this.sittingPlaceQuantity
+                  }
+                  increasePassangers(value) {
+                     this.passangersQuantity + value
+                  }
+                  decreasePassangers(value) {
+                     this.passangersQuantity - value
+                  }
+               }
+
+               const car1 = new Car1('Opel', 60, 20, 22, 19)
+               console.log(car1)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

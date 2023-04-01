@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-5</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 5</h3>
+            <p>Розробити клас «Керівник танців»</p>
+            <div>
+               <img src="../img/task-05.png" alt="" />
+            </div>
+
+            <script>
+               const boysArray = ['Ivan', 'Petro', 'Danil']
+               const girlsArray = ['Irina', 'Olga', 'Yulia', 'Olena', 'Daria']
+
+               //========================================================================================================================================================
+               // с помощью функции-констректора, массив тот же
+
+               function DanceLeader(boysList, girlsList) {
+                  this.boysList = boysList
+                  this.girlsList = girlsList
+               }
+               DanceLeader.prototype.getRandomNumber = function (maxValue) {
+                  return Math.floor(Math.random() * maxValue)
+               }
+               DanceLeader.prototype.getRandomBoy = function () {
+                  return this.boysList[this.getRandomNumber(this.boysList.length)]
+               }
+               DanceLeader.prototype.getRandomGirl = function () {
+                  return this.girlsList[this.getRandomNumber(this.girlsList.length)]
+               }
+               DanceLeader.prototype.createDancingDuet = function () {
+                  return alert([this.getRandomBoy(), this.getRandomGirl()])
+               }
+               DanceLeader.prototype.run = function () {
+                  setInterval(() => this.createDancingDuet(), 5000)
+               }
+
+               const object = new DanceLeader(boysArray, girlsArray)
+
+               console.log(object)
+               // console.log(object.getRandomBoy())
+               // console.log(object.getRandomGirl())
+               // console.log(object.createDancingDuet())
+               // object.run()
+
+               //========================================================================================================================================================
+               //c помощью синтаксиса класса
+
+               // class DanceLeaderClass {
+               //    constructor(boysList, girlsList) {
+               //       this.boysList = boysList
+               //       this.girlsList = girlsList
+               //    }
+               //    getRandomNumber(maxValue) {
+               //       return Math.floor(Math.random() * maxValue)
+               //    }
+               //    getRandomBoy() {
+               //       return this.boysList[this.getRandomNumber(this.boysList.length)]
+               //    }
+               //    getRandomGirl() {
+               //       return this.girlsList[this.getRandomNumber(this.girlsList.length)]
+               //    }
+               //    createDancingDuet() {
+               //       return alert([this.getRandomBoy(), this.getRandomGirl()])
+               //    }
+               //    run() {
+               //       setInterval(() => this.createDancingDuet(), 5000)
+               //    }
+               // }
+
+               // const object1 = new DanceLeaderClass(boysArray, girlsArray)
+
+               // console.log(object1)
+               // console.log(object1.getRandomBoy())
+               // console.log(object1.getRandomGirl())
+               // console.log(object1.createDancingDuet())
+               // object1.run()
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-3</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 3</h3>
+            <p>Розробити клас MultChecker для перевірки таблиці множення</p>
+            <div>
+               <img src="../img/task-03.png" alt="" />
+            </div>
+
+            <script>
+               //c помощью функции-констуктора
+               function MultChecker(multiplyNumber) {
+                  this.multiplyNumber = multiplyNumber
+                  this.correctAnswers = 0
+                  this.incorrectAnswers = 0
+                  this.userAnswer = null
+                  this.answerResult = null
+                  this.randomNumber = null
+               }
+               MultChecker.prototype.getRandomNumber = function () {
+                  return (this.randomNumber = Math.floor(Math.random() * 10) + 1)
+               }
+               MultChecker.prototype.getExersise = function () {
+                  this.randomNumber = this.getRandomNumber()
+                  this.userAnswer = parseInt(prompt(`Сколько будет ${this.randomNumber} * ${this.multiplyNumber}?`))
+                  if (this.userAnswer === this.multiplyNumber * this.randomNumber) {
+                     this.correctAnswers++
+                  } else this.incorrectAnswers++
+               }
+               MultChecker.prototype.getAnswerResult = function () {
+                  this.answerResult = this.userAnswer === this.multiplyNumber * this.randomNumber
+                  return alert(this.answerResult ? 'Правильно' : 'Не правильно')
+               }
+               MultChecker.prototype.render = function () {
+                  return alert(
+                     `Правильных ответов: ${this.correctAnswers}\nНе правильных ответов: ${this.incorrectAnswers}`
+                  )
+               }
+               const test = new MultChecker(5)
+               console.log(test)
+
+               test.getExersise()
+               test.getAnswerResult()
+               test.render()
+
+               //c помощью класса
+               // class MultChecker1 {
+               //    constructor(multiplyNumber) {
+               //       this.multiplyNumber = multiplyNumber
+               //       this.correctAnswers = 0
+               //       this.incorrectAnswers = 0
+               //       this.userAnswer = null
+               //       this.answerResult = null
+               //       this.randomNumber = null
+               //    }
+               //    getRandomNumber() {
+               //       return (this.randomNumber = Math.floor(Math.random() * 10) + 1)
+               //    }
+               //    getExersise() {
+               //       this.randomNumber = this.getRandomNumber()
+               //       this.userAnswer = parseInt(prompt(`Сколько будет ${this.randomNumber} * ${this.multiplyNumber}?`))
+               //       if (this.userAnswer === this.multiplyNumber * this.randomNumber) {
+               //          this.correctAnswers++
+               //       } else this.incorrectAnswers++
+               //    }
+               //    getAnswerResult() {
+               //       this.answerResult = this.userAnswer === this.multiplyNumber * this.randomNumber
+               //       return alert(this.answerResult ? 'Правильно' : 'Не правильно')
+               //    }
+               //    render() {
+               //       return alert(
+               //          `Правильных ответов: ${this.correctAnswers}\nНе правильных ответов: ${this.incorrectAnswers}`
+               //       )
+               //    }
+               // }
+
+               // const test1 = new MultChecker1(5)
+               // console.log(test1)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>
