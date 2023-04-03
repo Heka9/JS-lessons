@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-2</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 2</h3>
+            <p>
+               Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового
+               еквіваленту. Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та
+               визначення курсу долара, при якому сума у гривнях збільшиться на 100. Курс долара зберігати в окремому
+               полі.
+            </p>
+
+            <script>
+               class TMoney {
+                  #dollarPrice
+                  #sumInDollars
+                  constructor(dollarPrice, currentSum) {
+                     this.DollarPrice = dollarPrice
+                     this.SumInDollars = currentSum
+                  }
+                  get DollarPrice() {
+                     return this.#dollarPrice
+                  }
+                  get SumInDollars() {
+                     return this.#sumInDollars
+                  }
+                  set DollarPrice(newValue) {
+                     this.#dollarPrice = newValue
+                  }
+                  set SumInDollars(newValue) {
+                     this.#sumInDollars = this.converterInDollar(newValue)
+                  }
+                  watchBalanceInGrivna() {
+                     return this.converterInGrivna(this.SumInDollars)
+                  }
+                  converterInDollar(value) {
+                     return value / this.DollarPrice
+                  }
+                  converterInGrivna(value) {
+                     return value * this.DollarPrice
+                  }
+                  addMoney(value) {
+                     this.SumInDollars = this.converterInGrivna(this.SumInDollars) + value
+                  }
+                  takeMoney(value) {
+                     if (value > this.converterInGrivna(this.SumInDollars)) {
+                        throw new Error(
+                           `Not enough money, current balance = ${this.converterInGrivna(this.SumInDollars)}`
+                        )
+                     }
+                     this.SumInDollars = this.converterInGrivna(this.SumInDollars) - value
+                  }
+                  //метод при якому сума у гривнях збільшиться на 100
+                  someMethod(aditionalSum = 100) {
+                     return (this.watchBalanceInGrivna() + aditionalSum) / this.SumInDollars
+                  }
+                  toString() {
+                     return `Balance in dollars = ${
+                        this.SumInDollars
+                     }, balance in grivnas = ${this.watchBalanceInGrivna()}`
+                  }
+               }
+               const money = new TMoney(38, 3800)
+               document.write(money)
+               // console.log(money)
+               // money.addMoney(5000)
+               // money.takeMoney(3750)
+               // console.log(money.watchBalanceInGrivna())
+               // console.log(money.someMethod(200))
+               console.log(money)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-3</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 3</h3>
+            <div>
+               <img src="../img/task-03.png" alt="" />
+            </div>
+
+            <script>
+               class FoundingDate {
+                  constructor(year, month) {
+                     this.year = year
+                     this.month = month
+                  }
+               }
+               class Services {
+                  constructor(title, price, deadline) {
+                     this.title = title
+                     this.price = price
+                     this.deadline = deadline
+                  }
+               }
+               class OfficesAdress {
+                  constructor(country, city, street, houseNumber) {
+                     this.country = country
+                     this.city = city
+                     this.street = street
+                     this.houseNumber = houseNumber
+                  }
+                  toString() {
+                     return `${this.country} ${this.city} ${this.street} ${this.houseNumber}`
+                  }
+               }
+               class Firm {
+                  constructor(name, { year, month }, servicesArray, officesArray) {
+                     this.name = name
+                     this.foundingDate = new FoundingDate(year, month)
+                     this.services = servicesArray.map((el) => {
+                        const { title, price, deadline } = el
+                        return new Services(title, price, deadline)
+                     })
+
+                     this.offices = officesArray.map((el) => {
+                        const { country, city, street, houseNumber } = el
+                        return new OfficesAdress(country, city, street, houseNumber)
+                     })
+                  }
+                  getFirmYearsOld(currentYear) {
+                     return currentYear - this.foundingDate.year
+                  }
+                  toString() {
+                     return `Фирма ${this.name} основана в ${this.foundingDate.year} году. Офисы расположены в ${this.offices[0].city} и ${this.offices[1].city}. Фирма предоставляет следующие услуги: ${this.services[0].title}, ${this.services[1].title}, ${this.services[2].title}.`
+                  }
+                  showAllOfficesInCity(city) {
+                     for (const office of this.offices) {
+                        if (city === office.city) {
+                           document.write(office)
+                        }
+                     }
+                  }
+                  showableServices(money, time) {
+                     const avalaibleTime = parseInt(time)
+                     document.write(`За указанные деньги и срок могут быть выполнены следующие работы: <br>`)
+                     for (const service of this.services) {
+                        const serviseTime = parseInt(service.deadline)
+                        console.log(service.price, service.deadline, serviseTime)
+                        if (service.price < money && serviseTime < avalaibleTime) {
+                           document.write(`${service.title} <br>`)
+                        }
+                     }
+                  }
+               }
+
+               const object = new Firm(
+                  'JS Devs',
+                  { year: 2020, month: 'April' },
+                  [
+                     { title: 'testing', price: 1300, deadline: '20 days' },
+                     { title: 'developing', price: 2500, deadline: '40 days' },
+                     { title: 'coffe drinking', price: 500, deadline: '5 days' },
+                  ],
+                  [
+                     { country: 'France', city: 'Paris', street: 'Main Street', houseNumber: '25' },
+                     { country: 'Spain', city: 'Madrid', street: 'Some Street', houseNumber: '55' },
+                  ]
+               )
+               console.log(object)
+               // console.log(object.toString())
+               // console.log(object.getFirmYearsOld(2023))
+               // object.showAllOfficesInCity('Paris')
+               // object.showableServices(1000, '150 days')
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

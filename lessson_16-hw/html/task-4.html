@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-4</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 4</h3>
+            <p>
+               Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля для зберігання
+               кількості купюр кожного із номіналів від 5 до 200 гривень. Реалізувати методи знаходження максимальної та
+               мінімальної сум, які може видати банкомат, та метод зняття деякої суми.
+            </p>
+
+            <script>
+               class BanknoteInfo {
+                  constructor(value, quantity) {
+                     this.value = value
+                     this.quantity = quantity
+                  }
+                  getSum() {
+                     return this.value * this.quantity
+                  }
+               }
+               class TBankomat {
+                  constructor(initCurrencyArray) {
+                     this.currencyInfo = initCurrencyArray
+                        .map((el) => {
+                           const { value, quantity } = el
+                           return (el = new BanknoteInfo(value, quantity))
+                        })
+                        .sort((el1, el2) => el1.value - el2.value)
+                     this.totalSum = this.getMaxSum()
+                  }
+
+                  getMaxSum() {
+                     return this.currencyInfo.reduce((prevSum, element) => prevSum + element.getSum(), 0)
+                  }
+                  getMinSum() {
+                     return this.currencyInfo.find((element) => element.quantity > 0).value
+                  }
+                  takeMoney(value) {
+                     let currentMoney = 0
+                     let needMoney = value
+                     let i = 1
+                     let userBanknotes = {}
+                     if (value > this.totalSum) {
+                        throw new Error('Not enough money')
+                     } else {
+                        do {
+                           const banknoteCount = Math.floor(
+                              needMoney / this.currencyInfo[this.currencyInfo.length - i].value
+                           )
+                           if (this.currencyInfo[this.currencyInfo.length - i].quantity >= banknoteCount) {
+                              currentMoney = banknoteCount * this.currencyInfo[this.currencyInfo.length - i].value
+                              userBanknotes[this.currencyInfo[this.currencyInfo.length - i].value] = banknoteCount
+                              this.currencyInfo[this.currencyInfo.length - i].quantity -= banknoteCount
+                           } else {
+                              currentMoney =
+                                 this.currencyInfo[this.currencyInfo.length - i].quantity *
+                                 this.currencyInfo[this.currencyInfo.length - i].value
+                              userBanknotes[this.currencyInfo[this.currencyInfo.length - i].value] =
+                                 this.currencyInfo[this.currencyInfo.length - i].quantity
+                              this.currencyInfo[this.currencyInfo.length - i].quantity = 0
+                           }
+                           needMoney = needMoney - currentMoney
+                           i++
+                        } while (needMoney !== 0 && i <= this.currencyInfo.length)
+                     }
+                     this.totalSum = this.getMaxSum()
+                     return userBanknotes
+                  }
+               }
+               const currencyArray = [
+                  {
+                     value: 100,
+                     quantity: 650,
+                  },
+                  {
+                     value: 10,
+                     quantity: 76,
+                  },
+                  {
+                     value: 20,
+                     quantity: 128,
+                  },
+                  {
+                     value: 5,
+                     quantity: 78,
+                  },
+                  {
+                     value: 50,
+                     quantity: 1920,
+                  },
+                  {
+                     value: 200,
+                     quantity: 167,
+                  },
+               ]
+
+               const bank = new TBankomat(currencyArray)
+               console.log(bank)
+               // console.log(bank.getMaxSum())
+               // console.log(bank.getMinSum())
+               // console.log(bank.takeMoney(198110))
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

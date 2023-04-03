@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-1</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 1</h3>
+            <p>
+               Створити клас TDate для роботи із датами у форматі “день.місяць.рік”. Дата представляється структурою із
+               трьома полями. Реалізувати методи збільшення/зменшення дати на певну кількість днів, місяців чи років.
+               Введення та виведення дати реалізувати за допомогою методу toString.
+            </p>
+            <script>
+               document.write(`Расчеты производил исходя из 30 дней в месяце и 360 дней в году.  <br><br>`)
+
+               class TDate {
+                  #days
+                  #months
+                  #years
+                  constructor(day, month, year) {
+                     this.Days = day
+                     this.Months = month
+                     this.Years = year
+                  }
+                  get Days() {
+                     return this.#days
+                  }
+                  get Months() {
+                     return this.#months
+                  }
+                  get Years() {
+                     return this.#years
+                  }
+
+                  set Days(newValue) {
+                     if (!newValue || newValue <= 0 || newValue > 30) {
+                        throw new Error('Invalid value. Days value must be between 1 and 30.')
+                     }
+                     this.#days = newValue
+                  }
+                  set Months(newValue) {
+                     if (!newValue || newValue <= 0 || newValue > 12) {
+                        throw new Error('Invalid value. Months value must be between 1 and 12')
+                     }
+                     this.#months = newValue
+                  }
+                  set Years(newValue) {
+                     if (!newValue || newValue <= 0) {
+                        throw new Error("Invalid value. Years value can't be lees than 1")
+                     }
+                     this.#years = newValue
+                  }
+
+                  increaseDays(value) {
+                     const temp = this.Days
+                     this.Days = ((this.Days - 1 + value) % 30) + 1
+                     this.increaseMonths(Math.floor((temp - 1 + value) / 30))
+                  }
+                  increaseMonths(value) {
+                     const temp = this.Months
+                     this.Months = ((this.Months - 1 + value) % 12) + 1
+                     this.increaseYears(Math.floor((temp - 1 + value) / 12))
+                  }
+                  increaseYears(value) {
+                     this.Years = this.Years + value
+                  }
+                  decreaseDays(value) {
+                     const totalDays = (this.Years - 1) * 360 + (this.Months - 1) * 30 + this.Days - 1
+                     this.Days = 1
+                     this.Months = 1
+                     this.Years = 1
+
+                     this.increaseDays(totalDays - value)
+                  }
+                  decreaseMonths(value) {
+                     const totalMonths = (this.Years - 1) * 12 + this.Months - 1
+                     this.Months = 1
+                     this.Years = 1
+
+                     this.increaseMonths(totalMonths - value)
+                  }
+                  decreaseYears(value) {
+                     this.Years = this.Years - value
+                  }
+
+                  toString() {
+                     return `${this.#days}.${this.#months}.${this.#years}р.`
+                  }
+               }
+
+               const time = new TDate(20, 1, 1)
+               console.log(time)
+
+               // time.increaseDays(1)
+               // time.increaseMonths(12)
+               // time.increaseYears(12)
+               // time.decreaseDays(19)
+               // time.decreaseMonths(11)
+               // time.decreaseYears(15)
+               document.write(time)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>
