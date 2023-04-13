@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-7</title>
+      <link rel="stylesheet" href="../css/style.css" />
+      <style>
+         input[type='number']::-webkit-outer-spin-button,
+         input[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+         }
+         h2 {
+            font-size: 22px;
+         }
+         .homework__wrapper {
+            padding: 30px 0px;
+         }
+         .homework__block_actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+         }
+         .homework__block:not(:last-child) {
+            margin-bottom: 20px;
+         }
+
+         .homework__stage:not(:last-child) {
+            margin-bottom: 20px;
+         }
+         .homework__button {
+            padding: 5px 15px;
+            border-radius: 2px;
+            background-color: #d3d3d3;
+            border: 1px solid black;
+            color: black;
+         }
+         .homework__button:hover,
+         .homework__button:focus {
+            outline: none;
+            background-color: rgb(228, 228, 228);
+            box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.3);
+         }
+      </style>
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 7</h3>
+            <p>
+               Задача 7. Подорож складається з 3 етапів. На кожному етапі користувач може вибрати один з видів
+               транспорту (авто, автобус, літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та
+               одного з 3-х гідів(використати - radio buttons). Ціни визначте самі. Підрахувати загальну вартість.
+            </p>
+
+            <div class="homework__wrapper">
+               <div class="homework__stage">
+                  <h2>Етап 1</h2>
+                  <div class="homework__block">
+                     <h2>Транспорт</h2>
+                     <select class="homework__select">
+                        <option value="800">Авто</option>
+                        <option value="400">Автобус</option>
+                        <option value="1200">Літак</option>
+                     </select>
+                  </div>
+                  <div class="homework__block">
+                     <h2>Харчування</h2>
+                     <label> <input type="checkbox" value="80" class="homework__checkbox" />Сніданок </label>
+                     <label> <input type="checkbox" value="120" class="homework__checkbox" />Обід </label>
+                     <label> <input type="checkbox" value="70" class="homework__checkbox" />Вечеря </label>
+                  </div>
+                  <div class="homework__block">
+                     <h2>Гід</h2>
+                     <label> <input type="radio" name="gid" value="150" class="homework__radio" />Степан </label>
+                     <label> <input type="radio" name="gid" value="130" class="homework__radio" />Ігор </label>
+                     <label> <input type="radio" name="gid" value="140" class="homework__radio" />Володимир </label>
+                  </div>
+               </div>
+               <div class="homework__stage">
+                  <h2>Етап 2</h2>
+                  <div class="homework__block">
+                     <h2>Транспорт</h2>
+                     <select class="homework__select">
+                        <option value="800">Авто</option>
+                        <option value="400">Автобус</option>
+                        <option value="1200">Літак</option>
+                     </select>
+                  </div>
+                  <div class="homework__block">
+                     <h2>Харчування</h2>
+                     <label> <input type="checkbox" value="80" class="homework__checkbox" />Сніданок </label>
+                     <label> <input type="checkbox" value="120" class="homework__checkbox" />Обід </label>
+                     <label> <input type="checkbox" value="70" class="homework__checkbox" />Вечеря </label>
+                  </div>
+                  <div class="homework__block">
+                     <h2>Гід</h2>
+                     <label> <input type="radio" name="gid" value="150" class="homework__radio" />Степан </label>
+                     <label> <input type="radio" name="gid" value="130" class="homework__radio" />Ігор </label>
+                     <label> <input type="radio" name="gid" value="140" class="homework__radio" />Володимир </label>
+                  </div>
+               </div>
+               <div class="homework__stage">
+                  <h2>Етап 3</h2>
+                  <div class="homework__block">
+                     <h2>Транспорт</h2>
+                     <select class="homework__select">
+                        <option value="800">Авто</option>
+                        <option value="400">Автобус</option>
+                        <option value="1200">Літак</option>
+                     </select>
+                  </div>
+                  <div class="homework__block">
+                     <h2>Харчування</h2>
+                     <label> <input type="checkbox" value="80" class="homework__checkbox" />Сніданок </label>
+                     <label> <input type="checkbox" value="120" class="homework__checkbox" />Обід </label>
+                     <label> <input type="checkbox" value="70" class="homework__checkbox" />Вечеря </label>
+                  </div>
+                  <div class="homework__block">
+                     <h2>Гід</h2>
+                     <label> <input type="radio" name="gid" value="150" class="homework__radio" />Степан </label>
+                     <label> <input type="radio" name="gid" value="130" class="homework__radio" />Ігор </label>
+                     <label> <input type="radio" name="gid" value="140" class="homework__radio" />Володимир </label>
+                  </div>
+               </div>
+               <div class="homework__block homework__block_action">
+                  <button type="button" class="homework__button get-sum">Розрахувати вартість</button>
+               </div>
+               <div class="homework__block homework__block_answer"></div>
+            </div>
+
+            <script>
+               document.querySelector('.get-sum').onclick = () => {
+                  let sum = 0
+
+                  const transportSelects = document.querySelectorAll('.homework__select')
+                  const foodCheckboxes = document.querySelectorAll(`input[type='checkbox']`)
+                  const gidRadioButtons = document.querySelectorAll(`input[type='radio']`)
+
+                  for (const select of transportSelects) {
+                     sum += parseInt(select.value)
+                  }
+
+                  for (const checkbox of foodCheckboxes) {
+                     if (checkbox.checked) {
+                        sum += parseInt(checkbox.value)
+                     }
+                  }
+
+                  for (const radio of gidRadioButtons) {
+                     if (radio.checked) {
+                        sum += parseInt(radio.value)
+                     }
+                  }
+
+                  document.querySelector('.homework__block_answer').innerHTML = `Загальна вартість = ${sum} грн.`
+               }
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

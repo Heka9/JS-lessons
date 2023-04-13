@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-5</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 5</h3>
+            <p>
+               Задача 5. Відобразити таблицю 3*4 з випадковими числами (її треба динамічно створити і вставити на
+               сторінку)
+            </p>
+
+            <div class="homework__wrapper"></div>
+
+            <script>
+               function getRandomNumber(minValue, maxValue) {
+                  return minValue + Math.floor(Math.random() * (maxValue - minValue + 1))
+               }
+
+               function createTable(columns, rows) {
+                  const container = document.querySelector('.homework__wrapper')
+                  const table = document.createElement('table')
+                  for (let i = 0; i < rows; i++) {
+                     const tableRow = document.createElement('tr')
+                     for (let k = 0; k < columns; k++) {
+                        const tableElement = document.createElement('td')
+                        tableElement.innerHTML = getRandomNumber(1, 10)
+                        tableRow.prepend(tableElement)
+                     }
+                     table.prepend(tableRow)
+                  }
+                  container.prepend(table)
+               }
+               window.onload = createTable(3, 4)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

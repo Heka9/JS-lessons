@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-2</title>
+      <link rel="stylesheet" href="../css/style.css" />
+      <style>
+         input[type='number']::-webkit-outer-spin-button,
+         input[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+         }
+         .homework__wrapper {
+            padding: 30px 0px;
+            max-width: 600px;
+				margin: 0 auto;
+
+         }
+         .homework__block_actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+         }
+         .homework__block:not(:last-child) {
+            margin-bottom: 20px;
+         }
+         .homework__block:last-child {
+            padding-top: 20px;
+         }
+         .homework__block_pt-20 {
+            padding-top: 20px;
+         }
+         .homework__label {
+            font-size: 20px;
+            display: grid;
+            grid-template-columns: 30% 1fr;
+            align-items: center;
+         }
+         .homework__action {
+            padding: 5px 15px;
+            border-radius: 2px;
+            background-color: #d3d3d3;
+            border: 1px solid black;
+            color: black;
+            transition: all 0.3s ease 0s;
+         }
+         .homework__action:hover,
+         .homework__action:focus {
+            outline: none;
+            background-color: rgb(228, 228, 228);
+            box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.3);
+         }
+         .input {
+            border: 1px solid black;
+            border-radius: 2px;
+            height: 36px;
+            padding: 0px 10px;
+            font-size: 18px;
+            transition: all 0.3s ease 0s;
+         }
+         .input::placeholder {
+            color: grey;
+         }
+         .input:focus {
+            outline: none;
+            box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.3);
+         }
+      </style>
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 2</h3>
+            <p>Задача 2. Зробити конвертер валют (курси валют – константи у скрипті)</p>
+            <div>
+               <img src="../img/task-02.png" alt="" />
+            </div>
+            <div class="homework__wrapper">
+               <div class="homework__block">
+                  <label for="grivna-value" class="homework__label"
+                     >Сума в гривнях
+                     <input id="grivna-value" type="number" class="homework__grivna-value input" placeholder="0" />
+                  </label>
+               </div>
+               <div class="homework__block homework__block_actions">
+                  <button type="button" class="homework__action">Конвертувати</button>
+               </div>
+               <hr />
+               <div class="homework__block homework__block_pt-20">
+                  <label for="euro-result" class="homework__label"
+                     >Сума в євро
+                     <input id="euro-result" type="text" class="homework__euro-result input" placeholder="0" readonly />
+                  </label>
+               </div>
+               <div class="homework__block">
+                  <label for="dollar-result" class="homework__label"
+                     >Сума в доларах
+                     <input
+                        id="dollar-result"
+                        type="text"
+                        class="homework__dollar-result input"
+                        placeholder="0"
+                        readonly
+                     />
+                  </label>
+               </div>
+            </div>
+            <script>
+               const dollarRate = 38
+               const euroRate = 40
+
+               function convert() {
+                  const grivnaInputValue = parseFloat(document.querySelector('.homework__grivna-value').value)
+                  const euroResultInput = document.querySelector('.homework__euro-result')
+                  const dollarResultInput = document.querySelector('.homework__dollar-result')
+
+                  const euroConvertResult = grivnaInputValue / euroRate
+                  const dollarConvertResult = grivnaInputValue / dollarRate
+
+                  euroResultInput.value = euroConvertResult.toFixed(2)
+                  dollarResultInput.value = dollarConvertResult.toFixed(2)
+               }
+
+               document.querySelector('.homework__action').onclick = convert
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-3</title>
+      <link rel="stylesheet" href="../css/style.css" />
+      <style>
+         input[type='number']::-webkit-outer-spin-button,
+         input[type='number']::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+         }
+         .homework__wrapper {
+            padding: 30px 0px;
+            max-width: 600px;
+            margin: 0 auto;
+         }
+         .homework__block_actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+         }
+         .homework__block:not(:last-child) {
+            margin-bottom: 20px;
+         }
+         .homework__block:last-child {
+            padding-top: 20px;
+         }
+         .homework__block_pt-20 {
+            padding-top: 20px;
+         }
+         .homework__label {
+            font-size: 20px;
+            display: grid;
+            grid-template-columns: 30% 1fr;
+            align-items: center;
+         }
+         .homework__label.error {
+            position: relative;
+         }
+         .homework__action {
+            padding: 5px 15px;
+            border-radius: 2px;
+            background-color: #d3d3d3;
+            border: 1px solid black;
+            color: black;
+            transition: all 0.3s ease 0s;
+         }
+         .homework__action:hover,
+         .homework__action:focus {
+            outline: none;
+            background-color: rgb(228, 228, 228);
+            box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.3);
+         }
+         .input {
+            border: 1px solid black;
+            border-radius: 2px;
+            height: 36px;
+            padding: 0px 10px;
+            font-size: 18px;
+            transition: all 0.3s ease 0s;
+         }
+
+         .input.error {
+            border: 1px solid red;
+            color: red;
+            box-shadow: 3px 3px 5px 0px red;
+         }
+         .input::placeholder {
+            color: grey;
+         }
+         .input:focus {
+            outline: none;
+            box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.3);
+         }
+      </style>
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 3</h3>
+            <p>Користувач задає рік народження. Визначити кількість років користувача.</p>
+
+            <div class="homework__wrapper">
+               <div class="homework__block">
+                  <label for="born-year" class="homework__label"
+                     >Ваш рік народження
+                     <input id="born-year" type="number" class="homework__born-year input" placeholder="0" />
+                  </label>
+               </div>
+               <div class="homework__block homework__block_actions">
+                  <button type="button" class="homework__action">Визначити вік</button>
+               </div>
+               <hr />
+               <div class="homework__block homework__block_pt-20">
+                  <label for="result" class="homework__label"
+                     >Ваш вік
+                     <input id="result" type="text" class="homework__result input" placeholder="0" readonly />
+                  </label>
+               </div>
+            </div>
+            <script>
+               function getAge() {
+                  const userBornYearValue = parseInt(document.querySelector('.homework__born-year').value)
+                  const currentYear = new Date().getFullYear()
+
+                  if (userBornYearValue <= currentYear) {
+                     const userAge = currentYear - userBornYearValue
+
+                     document.querySelector('.homework__result').value = userAge
+                  } else {
+                     const birthYear = document.querySelector('.homework__born-year')
+                     birthYear.classList.add('error')
+                     birthYear.parentElement.classList.add('error')
+
+                     const errorBlock = document.createElement('span')
+                     errorBlock.innerHTML = "birthyear can't be greater than current year"
+                     errorBlock.style.cssText = `
+								position: absolute;
+								width: auto;
+								height: auto;
+								bottom: 0;
+								right: 0;
+								transform: translate(0px, 120%);
+								color: red;
+								font-size: 14px;
+								font-weight:700;
+							`
+                     birthYear.after(errorBlock)
+                  }
+               }
+
+               document.querySelector('.homework__action').onclick = getAge
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

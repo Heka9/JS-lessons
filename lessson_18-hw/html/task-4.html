@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-4</title>
+      <link rel="stylesheet" href="../css/style.css" />
+      <style>
+         .homework__wrapper {
+            padding: 30px 0px;
+            max-width: 600px;
+            margin: 0 auto;
+         }
+         .wish-element {
+            font-size: 20px;
+            text-align: center;
+         }
+         .wish-element:not(:last-child) {
+            margin-bottom: 20px;
+         }
+      </style>
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 4</h3>
+            <p>
+               Задача 4. Наперед задано у скрипті масив зі списком бажань. Після завантаження сторінки випадковим чином
+               вибираються 3 і відображаються у окремих div (їх треба створити і додати на сторінку)
+            </p>
+
+            <div class="homework__wrapper"></div>
+
+            <script>
+               const wishesArray = ['love', 'pease', 'friendship', 'car', 'house', 'health']
+
+               function getWish(array) {
+                  const randonNumber = Math.floor(Math.random() * array.length)
+                  return array.splice(randonNumber, 1)
+               }
+
+               function getWishes(value) {
+                  const container = document.querySelector('.homework__wrapper')
+
+                  for (let i = 0; i < value; i++) {
+                     const element = document.createElement('div')
+                     element.classList.add('wish-element')
+                     element.innerHTML = getWish(wishesArray)
+                     container.prepend(element)
+                  }
+               }
+
+               window.onload = getWishes(3)
+            </script>
+         </div>
+      </div>
+   </body>
+</html>
