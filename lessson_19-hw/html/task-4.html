@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-4</title>
+      <link rel="stylesheet" href="../css/style.css" />
+      <style>
+         .wrapper {
+            position: relative;
+            background-color: skyblue;
+         }
+         .sky {
+            position: relative;
+         }
+      </style>
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <!-- <h3 class="title">Задача 4</h3>
+            <p>
+               Задача 4. Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій частині екрану. Кожна
+               зірка з певним кроком і інтервалом збільшується від мінімального до максимального розміру. Як тільки
+               досягнути максимального розміру зірочка повинна з’являтися у іншій випадковій позиції.
+            </p> -->
+
+            <div class="sky"></div>
+         </div>
+      </div>
+      <script>
+         class Star {
+            constructor(data) {
+               this.starData = data
+            }
+            getRandomPosition() {
+               const containerWidth = this.container.clientWidth
+               const containerHeight = this.container.clientHeight
+               const leftStarPosition = Math.floor(Math.random() * (containerWidth - parseInt(this.starData.maxSize)))
+               const topStarPosition = Math.floor(Math.random() * (containerHeight - parseInt(this.starData.maxSize)))
+               this.star.style.left = `${leftStarPosition}px`
+               this.star.style.top = `${topStarPosition}px`
+            }
+            scale() {
+               const maxSize = parseInt(this.starData.maxSize)
+
+               const timer = setInterval(() => {
+                  const currentWidth = this.star.clientWidth
+                  const currentHeight = this.star.clientHeight
+                  this.star.style.width = `${currentWidth + parseInt(this.starData.step)}px`
+                  this.star.style.height = `${currentHeight + parseInt(this.starData.step)}px`
+
+                  if (currentWidth >= maxSize) {
+                     clearInterval(timer)
+                     this.star.remove()
+                     this.render(this.containerSelector)
+                  }
+               }, this.starData.interval)
+            }
+            render(containerSelector) {
+               this.containerSelector = containerSelector
+               this.container = document.querySelector(this.containerSelector)
+
+               this.star = document.createElement('img')
+               this.star.src = this.starData.url
+               this.star.style.cssText = `
+             position: absolute;
+             top: 0px;
+             left: 0px;`
+               this.star.style.width = `${this.starData.minSize}`
+               this.star.style.height = `${this.starData.minSize}`
+
+               this.getRandomPosition()
+               this.container.append(this.star)
+               this.scale()
+            }
+         }
+
+         class ShiningStart {
+            constructor(starsArray, starsQuantity) {
+               this.stars = starsArray
+               this.starsQuantity = starsQuantity
+            }
+            renderSky(containerSelector) {
+               this.containerSelector = containerSelector
+
+               for (let i = 0; i < this.starsQuantity; i++) {
+                  const star = new Star(this.stars[i]).render(this.containerSelector)
+               }
+            }
+         }
+
+         const startDataArray = [
+            {
+               url: '../img/task-04.png',
+               step: '5px',
+               interval: 200,
+               minSize: '10px',
+               maxSize: '50px',
+            },
+            {
+               url: '../img/task-04.png',
+               step: '4px',
+               interval: 100,
+               minSize: '12px',
+               maxSize: '60px',
+            },
+            {
+               url: '../img/task-04.png',
+               step: '3px',
+               interval: 150,
+               minSize: '15px',
+               maxSize: '45px',
+            },
+            {
+               url: '../img/task-04.png',
+               step: '6px',
+               interval: 250,
+               minSize: '11px',
+               maxSize: '48px',
+            },
+            {
+               url: '../img/task-04.png',
+               step: '5px',
+               interval: 200,
+               minSize: '10px',
+               maxSize: '50px',
+            },
+            {
+               url: '../img/task-04.png',
+               step: '4px',
+               interval: 100,
+               minSize: '12px',
+               maxSize: '60px',
+            },
+            {
+               url: '../img/task-04.png',
+               step: '3px',
+               interval: 150,
+               minSize: '15px',
+               maxSize: '45px',
+            },
+            {
+               url: '../img/task-04.png',
+               step: '6px',
+               interval: 250,
+               minSize: '11px',
+               maxSize: '48px',
+            },
+         ]
+
+         window.onload = () => {
+            new ShiningStart(startDataArray, 8).renderSky('.wrapper')
+         }
+      </script>
+   </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-3</title>
+      <link rel="stylesheet" href="../css/style.css" />
+      <style>
+         #container {
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid #000;
+            height: 500px;
+            position: relative;
+            background-color: #c8fafd8a;
+         }
+         .snow {
+            position: absolute;
+            top: 0;
+            left: 0;
+         }
+      </style>
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 3</h3>
+            <p>
+               Задача 3. Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану і з випадковою
+               швидкістю рухається вниз. Як тільки сніжинка досягає нижньої частини екрану вона знову повинна з’явитись
+               у верхній частині екрану.
+            </p>
+
+            <div id="container"></div>
+            <script>
+               class SnowFall {
+                  constructor({ imgUrl, speed, snowSize }, timingFunction = 'linear') {
+                     this.imgUrl = imgUrl
+                     this.speed = speed
+                     this.snowSize = snowSize
+                     this.timingFunction = timingFunction
+                  }
+                  randomAppearance() {
+                     const containerWidth = this.targetContainer.clientWidth
+                     const leftSnowPosition = Math.floor(Math.random() * (containerWidth - this.snowSize))
+
+                     this.snow.style.left = `${leftSnowPosition}px`
+                  }
+                  snowMove() {
+                     this.containerHeight = this.targetContainer.clientHeight
+                     const snowHeight = this.snow.clientHeight
+
+                     this.snow.animate([{ top: '0px' }, { top: `${this.containerHeight - snowHeight}px` }], {
+                        duration: this.speed * 1000,
+                        easing: `${this.timingFunction}`,
+                        fill: 'forwards',
+                        // iterations: 'Infinity',
+                     })
+                  }
+                  snowRotate() {
+                     this.snow.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(-360deg)' }], {
+                        duration: this.speed * 1000,
+                        easing: `${this.timingFunction}`,
+                     })
+                  }
+                  start() {
+                     this.randomAppearance()
+                     this.snowMove()
+                     this.snowRotate()
+                     this.nextSnow()
+                  }
+
+                  nextSnow() {
+                     const timer = setTimeout(() => {
+                        this.snow.remove()
+                        this.render(this.containerId)
+                        clearTimeout(timer)
+                     }, this.speed * 1000)
+                  }
+                  render(containerId) {
+                     this.containerId = containerId
+                     this.targetContainer = document.getElementById(containerId)
+
+                     this.snow = document.createElement('img')
+                     this.snow.src = this.imgUrl
+                     this.snow.className = 'snow'
+                     this.snow.style.width = `${this.snowSize}px`
+                     this.snow.style.height = `${this.snowSize}px`
+                     this.targetContainer.append(this.snow)
+                     this.start()
+                  }
+               }
+
+               const snowsData = [
+                  {
+                     imgUrl: '../img/task-03/01.png',
+                     speed: 5,
+                     snowSize: 40,
+                  },
+                  {
+                     imgUrl: '../img/task-03/02.png',
+                     speed: 5,
+                     snowSize: 38,
+                  },
+                  {
+                     imgUrl: '../img/task-03/03.png',
+                     speed: 4,
+                     snowSize: 32,
+                  },
+                  {
+                     imgUrl: '../img/task-03/04.png',
+                     speed: 6,
+                     snowSize: 35,
+                  },
+                  {
+                     imgUrl: '../img/task-03/05.png',
+                     speed: 4,
+                     snowSize: 36,
+                  },
+               ]
+
+               window.onload = () => {
+                  for (let i = 0; i < snowsData.length; i++) {
+                     if (i === 0) {
+                        const snow = new SnowFall(snowsData[i], 'ease').render('container')
+                     } else if (i === snowsData.length - 1) {
+                        const snow = new SnowFall(snowsData[i], 'ease-in-out').render('container')
+                     } else {
+                        const snow = new SnowFall(snowsData[i]).render('container')
+                     }
+                  }
+               }
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

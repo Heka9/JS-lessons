@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-1</title>
+      <link rel="stylesheet" href="../css/style.css" />
+      <style>
+         .cards__container {
+            display: flex;
+            gap: 20px;
+         }
+         .card {
+            padding: 15px;
+            border: 1px solid #555;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px 0px #777;
+            max-width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+         }
+         .card.checked {
+            outline: 5px solid green;
+         }
+         .card__category {
+            padding: 5px 10px;
+            background-color: orange;
+            color: #fff;
+            border-radius: 10px;
+            margin-bottom: 25px;
+         }
+         .card__category.card__category_promo {
+            background-color: rgb(163, 78, 78);
+         }
+         .card__image-container {
+            margin-bottom: 20px;
+            position: relative;
+            width: 100%;
+            padding-bottom: 70%;
+         }
+         .image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
+         .card__title {
+            color: #000;
+            text-decoration: none;
+            transition: color 0.3s ease 0s;
+            font-size: 24px;
+            margin-bottom: 20px;
+            flex-grow: 1;
+         }
+         .card__title:hover {
+            color: #999;
+         }
+         .card__price {
+            font-size: 20px;
+
+            color: rgb(219, 76, 76);
+         }
+      </style>
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 1</h3>
+            <p>Задача 1. Відображаємо картки товарів, які користувач може вибирати. Вибраний товар має зелену рамку</p>
+            <div>
+               <img src="../img/task-01/task-01.png" alt="" />
+            </div>
+            <div id="container"></div>
+
+            <script>
+               class ProductCard {
+                  constructor(data) {
+                     this.data = data
+                  }
+                  action() {
+                     this.card.onclick = () => {
+                        this.card.classList.toggle('checked')
+                     }
+                  }
+                  render(conteinerId) {
+                     const cardsContainer = document.getElementById(conteinerId)
+                     cardsContainer.className = 'cards__container'
+
+                     this.card = document.createElement('div')
+                     this.card.className = 'card'
+                     this.action()
+                     cardsContainer.append(this.card)
+
+                     const cardCategory = document.createElement('div')
+                     cardCategory.innerText = this.data.category
+                     if (this.data.category === 'Акція') {
+                        cardCategory.className = 'card__category card__category_promo'
+                     } else cardCategory.className = 'card__category'
+
+                     this.card.append(cardCategory)
+
+                     const cardImageContainer = document.createElement('div')
+                     cardImageContainer.className = 'card__image-container'
+                     this.card.append(cardImageContainer)
+
+                     const cardImage = document.createElement('img')
+                     cardImage.src = this.data.image
+                     cardImage.className = 'image'
+                     cardImageContainer.append(cardImage)
+
+                     const cardTitle = document.createElement('a')
+                     cardTitle.href = this.data.link
+                     cardTitle.innerText = this.data.title
+                     cardTitle.className = 'card__title'
+                     this.card.append(cardTitle)
+
+                     const cardPrice = document.createElement('div')
+                     cardPrice.innerText = this.data.price + ' грн'
+                     cardPrice.className = 'card__price'
+                     this.card.append(cardPrice)
+                  }
+               }
+
+               const productsArrayData = [
+                  {
+                     id: 1,
+                     category: 'Топ продаж',
+                     image: '../img/task-01/01.jpg',
+                     link: 'https://www.google.com.ua/',
+                     title: 'Ноутбук Acer Aspire 7 A-715-42G-R3EZ',
+                     price: 30999,
+                  },
+                  {
+                     id: 2,
+                     category: 'Топ продаж',
+                     image: '../img/task-01/02.jpg',
+                     link: 'https://www.google.com.ua/',
+                     title: 'Не настільки крутий ноутбук',
+                     price: 19999,
+                  },
+                  {
+                     id: 3,
+                     category: 'Акція',
+                     image: '../img/task-01/03.jpg',
+                     link: 'https://www.google.com.ua/',
+                     title: 'Зовсім не крутий ноутбук',
+                     price: 13999,
+                  },
+                  {
+                     id: 4,
+                     category: 'Топ продаж',
+                     image: '../img/task-01/04.jpg',
+                     link: 'https://www.google.com.ua/',
+                     title: 'Супер крутий ноутбук',
+                     price: 39999,
+                  },
+               ]
+
+               window.onload = () => {
+                  for (const product of productsArrayData) {
+                     const prod = new ProductCard(product).render('container')
+                  }
+               }
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

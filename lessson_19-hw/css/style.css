@@ -1,0 +1,76 @@
+@import "reset.css";
+
+body {
+	font-family: "Arial";
+}
+
+.wrapper {
+	overflow: hidden;
+	min-height: 100%;
+	position: relative;
+}
+
+[class*="__container"] {
+	max-width: 1200px;
+	margin: 0 auto;
+	/* padding-top: 50px;
+	padding-bottom: 50px; */
+	justify-content: center;
+}
+/*----------------------------------------------------------*/
+
+h1 {
+	font-size: 50px;
+	text-align: center;
+}
+h1:not(:last-child) {
+	margin-bottom: 40px;
+}
+h2:not(:last-child) {
+	margin-bottom: 20px;
+}
+a {
+	color: blue;
+	font-size: 30px;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+}
+li:not(:last-child) {
+	margin-bottom: 15px;
+}
+
+.title {
+	font-size: 28px;
+}
+.title:not(:last-child) {
+	margin-bottom: 15px;
+}
+.data {
+	font-size: 20px;
+}
+.data:not(:last-child) {
+	margin-bottom: 10px;
+}
+p:not(:last-child) {
+	margin-bottom: 20px;
+}
+table,
+td,
+th {
+	border: 1px solid #000;
+	text-align: center;
+}
+td {
+	padding: 15px;
+}
+hr {
+	height: 1px;
+	background-color: #000;
+}
+
+h2 {
+	font-size: 30px;
+}
+/* ========================================================================================================================================================*/

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-2</title>
+      <link rel="stylesheet" href="../css/style.css" />
+      <style>
+         #container {
+            display: flex;
+            gap: 20px;
+            padding: 20px 0px;
+         }
+         .sportsmans__title {
+            font-size: 30px;
+            margin-bottom: 20px;
+         }
+         .list {
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+         }
+         .list ul {
+            flex-grow: 1;
+         }
+         .sportsmans__all {
+         }
+         .competition__sportsmans {
+         }
+         .sportsmans__list,
+         .sportsmans__choosen-list {
+            border: 3px solid #000;
+            padding: 10px;
+         }
+         .sportsmans__choosen-list {
+         }
+         .sportsman__item {
+            border: 1px solid #000;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: space-between;
+         }
+         .sportsman__name {
+            font-size: 24px;
+         }
+         .add-button {
+            border: 1px solid #000;
+            padding: 5px 10px;
+            background-color: green;
+            color: #fff;
+         }
+         .delete-button {
+            border: 1px solid #000;
+            padding: 5px 10px;
+            background-color: red;
+            color: #fff;
+         }
+      </style>
+   </head>
+
+   <body>
+      <div class="wrapper">
+         <div class="block__container">
+            <h3 class="title">Задача 2</h3>
+            <p>
+               Задача 2. Дано список спортсменів. Потрібно сформувати список тих, які будуть брати участь у змаганні.
+               При цьому є два стовпці. В одному відображені всі спортсмени, в іншому – список тих, хто був вибраний.
+               При натисканні на зелену стрілку спортсмен переміщається у список для змагань. При натисканні на червону
+               стрілку спортсмен переміщається у загальний список.
+            </p>
+            <div>
+               <img src="../img/task-02.png" alt="" />
+            </div>
+
+            <div id="container"></div>
+            <script>
+               class SportsmansOnCompetition {
+                  constructor(sportsmansArray) {
+                     this.sportsmansArray = sportsmansArray
+                     this.chosenSportsmansArray = []
+                  }
+                  cleanAllList() {
+                     const sportsmansList = document.querySelectorAll(`ul.sportsmans__list li.sportsman__item`)
+                     for (const sportsman of sportsmansList) {
+                        sportsman.remove()
+                     }
+                  }
+                  cleanChoosenList() {
+                     const chosenSportsmansArray = document.querySelectorAll(
+                        'ul.sportsmans__choosen-list li.sportsman__item'
+                     )
+                     for (const sportsman of chosenSportsmansArray) {
+                        sportsman.remove()
+                     }
+                  }
+                  removeFromAllList(index) {
+                     this.sportsmansArray = this.sportsmansArray.filter((element, ind) => {
+                        if (index === ind) {
+                           this.chosenSportsmansArray.push(element)
+                           return false
+                        }
+                        return true
+                     })
+                  }
+                  removeFromChoosenList(index) {
+                     this.chosenSportsmansArray = this.chosenSportsmansArray.filter((element, ind) => {
+                        if (index === ind) {
+                           this.sportsmansArray.push(element)
+                           return false
+                        }
+                        return true
+                     })
+                  }
+                  render(containerId) {
+                     const container = document.getElementById(containerId)
+
+                     const allSportsmansCoitainer = document.createElement('div')
+                     allSportsmansCoitainer.className = 'list sportsmans__all'
+                     container.append(allSportsmansCoitainer)
+
+                     const allSportsmansTitle = document.createElement('h3')
+                     allSportsmansTitle.className = 'sportsmans__title'
+                     allSportsmansTitle.innerText = 'Загальний список'
+                     allSportsmansCoitainer.append(allSportsmansTitle)
+
+                     const allSportsmansList = document.createElement('ul')
+                     allSportsmansList.className = 'sportsmans__list'
+                     allSportsmansCoitainer.append(allSportsmansList)
+
+                     const allCompetitionSportsmansCoitainer = document.createElement('div')
+                     allCompetitionSportsmansCoitainer.className = 'list competition__sportsmans'
+                     container.append(allCompetitionSportsmansCoitainer)
+
+                     const allCompetitionSportsmansTitle = document.createElement('h3')
+                     allCompetitionSportsmansTitle.className = 'sportsmans__title'
+                     allCompetitionSportsmansTitle.innerText = 'Обрані для змагання'
+                     allCompetitionSportsmansCoitainer.append(allCompetitionSportsmansTitle)
+
+                     const allChoosenSportsmansList = document.createElement('ul')
+                     allChoosenSportsmansList.className = 'sportsmans__choosen-list'
+                     allCompetitionSportsmansCoitainer.append(allChoosenSportsmansList)
+
+                     const renderAllList = (array) => {
+                        array.forEach((sportsman, i) => {
+                           const sportsmanItem = document.createElement('li')
+                           sportsmanItem.className = 'sportsman__item'
+                           allSportsmansList.append(sportsmanItem)
+
+                           const sportsmanName = document.createElement('h3')
+                           sportsmanName.className = 'sportsman__name'
+                           sportsmanName.innerText = array[i]
+                           sportsmanItem.append(sportsmanName)
+
+                           const addButton = document.createElement('button')
+                           addButton.className = 'add-button'
+                           addButton.innerHTML = '===>'
+
+                           addButton.onclick = () => {
+                              this.removeFromAllList(i)
+                              this.cleanAllList()
+                              this.cleanChoosenList()
+                              renderAllList(this.sportsmansArray)
+                              renderChosenSportsmansList(this.chosenSportsmansArray)
+                           }
+                           sportsmanItem.append(addButton)
+                        })
+                     }
+                     renderAllList(this.sportsmansArray)
+
+                     const renderChosenSportsmansList = (array) => {
+                        array.forEach((sportsman, i) => {
+                           const sportsmanItem = document.createElement('li')
+                           sportsmanItem.className = 'sportsman__item'
+                           allChoosenSportsmansList.append(sportsmanItem)
+
+                           const sportsmanName = document.createElement('h3')
+                           sportsmanName.className = 'sportsman__name'
+                           sportsmanName.innerText = array[i]
+                           sportsmanItem.append(sportsmanName)
+
+                           const deleteButton = document.createElement('button')
+                           deleteButton.className = 'delete-button'
+                           deleteButton.innerHTML = '<==='
+
+                           deleteButton.onclick = () => {
+                              this.removeFromChoosenList(i)
+                              this.cleanChoosenList()
+                              this.cleanAllList()
+                              renderChosenSportsmansList(this.chosenSportsmansArray)
+                              renderAllList(this.sportsmansArray)
+                           }
+                           sportsmanItem.append(deleteButton)
+                        })
+                     }
+                  }
+               }
+
+               const sportsmansList = ['John Depp', 'Sara Wik', 'Den Miro', 'Alan Woo', 'Olga Sich', 'Ivan Hal']
+               window.onload = () => {
+                  const prod = new SportsmansOnCompetition(sportsmansList).render('container')
+               }
+            </script>
+         </div>
+      </div>
+   </body>
+</html>

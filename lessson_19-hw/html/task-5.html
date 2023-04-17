@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Task-5</title>
+      <link rel="stylesheet" href="../css/style.css" />
+   </head>
+   <style>
+      .wrapper {
+      }
+      .loading-screen {
+         position: absolute;
+         top: 0px;
+         left: 0px;
+         width: 100%;
+         height: 100%;
+         z-index: 10;
+         background-color: grey;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+      }
+      h2.loading-screen-title {
+         color: black;
+         font-family: 'Arial';
+         font-size: 60px;
+         font-weight: 700;
+         text-shadow: 3px 3px 10px darkgrey;
+         text-align: center;
+         margin-bottom: 60px;
+      }
+      .loading-screen-info {
+         display: grid;
+      }
+      .loading-screen-block {
+         display: grid;
+         grid-template-columns: 40% 1fr;
+         align-items: center;
+         margin-bottom: 20px;
+      }
+      .loading-screen-label {
+         margin-right: 10px;
+         color: white;
+      }
+      .loading-screen-input {
+         width: 100%;
+         height: 30px;
+         padding: 0px 10px;
+      }
+      .loading-screen-button {
+         margin-top: 40px;
+         background-color: rgb(41, 26, 70);
+         border-radius: 10px;
+         border: 1px solid black;
+         justify-self: center;
+         padding: 10px 25px;
+         font-size: 28px;
+         color: rgb(147, 147, 202);
+      }
+      #battle-tank {
+         padding: 10px 0px;
+         position: relative;
+      }
+      .counters {
+         height: calc(10vh - 10px);
+         text-align: center;
+         display: flex;
+         justify-content: space-evenly;
+         align-items: center;
+         gap: 10px;
+         flex-wrap: wrap;
+         font-size: calc(8vh - 10px);
+         color: rgb(99, 96, 96);
+      }
+      .game-field {
+         width: 90vw;
+         height: calc(90vh - 10px);
+         margin: 0 auto;
+         border: 5px double grey;
+         box-shadow: inset 0 0 5px darkgray;
+         position: relative;
+         overflow: hidden;
+      }
+      .game-field.lose-life {
+         border: 6px solid red;
+         box-shadow: inset 0 0 5px red, 0 0 5px red;
+      }
+      .lose-block {
+         text-align: center;
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         left: 0;
+         background-color: #e9e9e9;
+         color: #000;
+         font-size: 40px;
+         font-weight: 700;
+         z-index: 10;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+      }
+      .lose-block button {
+         margin-top: 30px;
+         font-size: 20px;
+         border-radius: 5px;
+         background-color: grey;
+         padding: 10px 20px;
+         color: #fff;
+      }
+   </style>
+   <body>
+      <div class="wrapper">
+         <!-- <div class="block__container"> -->
+         <!-- <h3 class="title">Задача 5</h3>
+            <p>
+					Задача 5. Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі з’являються
+					танки, які їдуть вниз. При кліку на танк він вибухає і зникає з екрану.
+				</p> -->
+
+         <!-- </div> -->
+         <div id="battle-tank"></div>
+      </div>
+      <script>
+         class BattleTank {
+            constructor(tankSize, tankImage) {
+               this.tankSize = tankSize
+               this.tankImage = tankImage
+               this.destroyedTanks = 0
+            }
+            randonPositin() {
+               const gameFieldWidth = this.gameField.clientWidth
+               return Math.floor(Math.random() * (gameFieldWidth - this.tankSize))
+            }
+            setLifes() {
+               if (this.gameDifficulty === 'hard') {
+                  this.lifes = 1
+               } else if (this.gameDifficulty === 'medium') {
+                  this.lifes = 2
+               } else {
+                  this.lifes = 3
+               }
+               this.leftLifesCounter.innerHTML = `Lifes: ${this.lifes}`
+            }
+            lifesCounter() {
+               this.gameField.classList.add('lose-life')
+               const timer = setTimeout(() => {
+                  this.gameField.classList.remove('lose-life')
+                  clearTimeout(timer)
+               }, 1000)
+               this.lifes--
+               this.leftLifesCounter.innerHTML = `Lifes: ${this.lifes}`
+               if (this.lifes <= 0) {
+                  this.endGame()
+               } else {
+                  this.nextTank()
+               }
+            }
+            destroyedTanksCounter() {
+               this.destroyedTanks++
+               this.destroyTanksCounter.innerHTML = `Tanks destroyed: ${this.destroyedTanks}`
+               this.nextTank()
+            }
+            createTank() {
+               this.tank = document.createElement('img')
+               this.tank.src = this.tankImage
+               this.tank.style.cssText = `
+               position: absolute;
+               top: -${this.tankSize}px;
+               left: ${this.randonPositin()}px;
+               width: ${this.tankSize}px;
+               heigth: ${this.tankSize}px;
+               `
+               this.tank.onclick = this.destroyTank.bind(this)
+               return this.tank
+            }
+            destroyTank() {
+               this.tank.remove()
+               clearInterval(this.moveInterval)
+               this.destroyedTanksCounter()
+            }
+            moveTank() {
+               const gameFieldHeight = this.gameField.clientHeight
+               const tankStep = gameFieldHeight / 100
+               const loseLifePosition = gameFieldHeight - this.tankSize
+
+               this.moveInterval = setInterval(() => {
+                  const currentTankPosition = this.tank.getBoundingClientRect().top + tankStep
+
+                  this.tank.style.top = `${currentTankPosition}px`
+                  if (currentTankPosition > loseLifePosition) {
+                     clearInterval(this.moveInterval)
+                     this.tank.remove()
+                     this.lifesCounter()
+                  }
+               }, this.speed * 1000)
+            }
+            nextTank() {
+               this.gameField.append(this.createTank())
+               this.moveTank()
+            }
+            endGame() {
+               const endGameBlock = document.createElement('div')
+               endGameBlock.className = 'lose-block'
+               this.container.append(endGameBlock)
+
+               const endGameTitle = document.createElement('h4')
+               endGameTitle.innerHTML = `
+           				${this.playerName}, you lose!<br>
+           				Destroyed tanks = ${this.destroyedTanks}
+           		`
+               endGameBlock.append(endGameTitle)
+
+               const playAgainButton = document.createElement('button')
+               playAgainButton.type = 'button'
+               playAgainButton.innerText = 'Play again?'
+               endGameBlock.append(playAgainButton)
+
+               this.destroyedTanks = 0
+               this.destroyTanksCounter.innerHTML = `Tanks destroyed: ${this.destroyedTanks}`
+
+               playAgainButton.onclick = () => {
+                  endGameBlock.remove()
+                  this.createLoadingScreen()
+               }
+            }
+            createLoadingScreen() {
+               this.loadingScreen = document.createElement('div')
+               this.loadingScreen.className = 'loading-screen'
+               this.container.prepend(this.loadingScreen)
+
+               const title = document.createElement('h2')
+               title.innerHTML = 'Battle <br> Tank'
+               title.className = 'loading-screen-title'
+               this.loadingScreen.prepend(title)
+
+               const gameInfo = document.createElement('div')
+               gameInfo.className = 'loading-screen-info'
+               this.loadingScreen.append(gameInfo)
+
+               const playerNameBlock = document.createElement('div')
+               playerNameBlock.className = 'loading-screen-block'
+               gameInfo.append(playerNameBlock)
+
+               const playerNameLabel = document.createElement('label')
+               playerNameLabel.innerText = 'Enter your name'
+               playerNameLabel.className = 'loading-screen-label'
+               playerNameBlock.append(playerNameLabel)
+
+               const playerNameInputInner = document.createElement('div')
+               playerNameBlock.append(playerNameInputInner)
+
+               this.playerNameInput = document.createElement('input')
+               this.playerNameInput.type = 'text'
+               this.playerNameInput.className = 'loading-screen-input'
+               playerNameInputInner.append(this.playerNameInput)
+
+               const gameDifficultyBlock = document.createElement('div')
+               gameDifficultyBlock.className = 'loading-screen-block'
+               gameInfo.append(gameDifficultyBlock)
+
+               const gameDifficultyLabel = document.createElement('label')
+               gameDifficultyLabel.innerText = 'Choose game difficulty'
+               gameDifficultyLabel.className = 'loading-screen-label'
+               gameDifficultyBlock.append(gameDifficultyLabel)
+
+               this.gameDifficultySelect = document.createElement('select')
+               this.gameDifficultySelect.className = 'loading-screen-input'
+
+               const gameDifficultyOptionEasy = document.createElement('option')
+               gameDifficultyOptionEasy.innerText = 'Easy'
+               const gameDifficultyOptionMedium = document.createElement('option')
+               gameDifficultyOptionMedium.innerText = 'Medium'
+               const gameDifficultyOptionHard = document.createElement('option')
+               gameDifficultyOptionHard.innerText = 'Hard'
+
+               this.gameDifficultySelect.append(
+                  gameDifficultyOptionEasy,
+                  gameDifficultyOptionMedium,
+                  gameDifficultyOptionHard
+               )
+               gameDifficultyBlock.append(this.gameDifficultySelect)
+
+               const startPlayButton = document.createElement('button')
+               startPlayButton.type = 'button'
+               startPlayButton.innerText = 'Start game!'
+               startPlayButton.className = 'loading-screen-button'
+
+               startPlayButton.onclick = () => {
+                  this.playerName = this.playerNameInput.value
+                  this.gameDifficulty = this.gameDifficultySelect.value.toLocaleLowerCase()
+                  this.loadingScreen.remove()
+
+                  if (this.gameDifficulty === 'hard') {
+                     this.speed = 0.4
+                  } else if (this.gameDifficulty === 'medium') {
+                     this.speed = 0.7
+                  } else {
+                     this.speed = 1
+                  }
+                  this.setLifes()
+                  this.gameField.append(this.createTank())
+                  this.moveTank()
+               }
+               gameInfo.append(startPlayButton)
+            }
+            render(conteinerId) {
+               this.container = document.getElementById(conteinerId)
+               this.createLoadingScreen()
+
+               const counters = document.createElement('div')
+               counters.className = 'counters'
+               this.container.prepend(counters)
+
+               this.destroyTanksCounter = document.createElement('div')
+               this.leftLifesCounter = document.createElement('div')
+               this.destroyTanksCounter.innerHTML = `Tanks destroyed: ${this.destroyedTanks}`
+               this.leftLifesCounter.innerHTML = this.setLifes()
+
+               counters.prepend(this.destroyTanksCounter)
+               counters.append(this.leftLifesCounter)
+
+               this.gameField = document.createElement('div')
+               this.gameField.className = 'game-field'
+               this.container.append(this.gameField)
+            }
+         }
+
+         const t1 = new BattleTank(50, '../img/task-05.png').render('battle-tank')
+      </script>
+   </body>
+</html>
