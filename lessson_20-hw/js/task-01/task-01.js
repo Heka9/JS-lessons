@@ -94,7 +94,7 @@ class Product {
 }
 
 window.onload = () => {
-   const product = new Product(1, 10, 5500, '../../img/task-01/image-01.webp')
+   const product = new Product(1, 10, 5500, '../img/task-01/image-01.webp')
    product.render('container')
    console.log(product)
 }
