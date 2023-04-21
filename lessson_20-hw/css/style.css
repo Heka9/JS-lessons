@@ -1,0 +1,49 @@
+@import "reset.css";
+
+body {
+	font-family: "Arial";
+}
+
+.wrapper {
+	overflow: hidden;
+	min-height: 100%;
+	position: relative;
+}
+
+[class*="__container"] {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 50px 0px;
+}
+/*----------------------------------------------------------*/
+.homework__container h1 {
+	font-size: 40px;
+	text-align: center;
+	margin-bottom: 40px;
+}
+.homework__container h2 > a {
+	display: inline-block;
+	font-size: 30px;
+	margin-bottom: 20px;
+	text-decoration: underline;
+}
+.homework__container > ul > li:not(:last-child) {
+	margin-bottom: 30px;
+}
+.homework__container > ul > li p {
+	margin-bottom: 20px;
+	font-size: 18px;
+	line-height: 1.2;
+}
+
+/*================================================================================================================================================*/
+
+.block__container .title {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+.block__container > p {
+	font-size: 20px;
+	line-height: 1.2;
+	margin-bottom: 20px;
+}
