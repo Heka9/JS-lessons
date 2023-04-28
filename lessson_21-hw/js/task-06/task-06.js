@@ -245,21 +245,21 @@ class ProductManager {
 
 const productData = [
    {
-      image: '../../img/task-06/image-01.webp',
+      image: '../img/task-06/image-01.webp',
       title: 'Телевізор Hisense',
       price: 14576,
       quantity: 5,
       id: 1,
    },
    {
-      image: '../../img/task-06/image-02.webp',
+      image: '../img/task-06/image-02.webp',
       title: 'Миша Logitech',
       price: 1189,
       quantity: 10,
       id: 2,
    },
    {
-      image: '../../img/task-06/image-03.webp',
+      image: '../img/task-06/image-03.webp',
       title: 'Ігрова поверхня Razer',
       price: 799,
       quantity: 8,
