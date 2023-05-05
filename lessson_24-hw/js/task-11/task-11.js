@@ -17,6 +17,8 @@ const checkboxInput = document.createElement('input')
 checkboxInput.setAttribute('type', 'checkbox')
 checkboxLabel.append(checkboxInput)
 
+const changeColorCounter = document.createElement('div')
+
 colorInput.addEventListener('input', function () {
    const userColor = colorInput.value
    documentBody.style.backgroundColor = `${userColor}`
@@ -25,18 +27,27 @@ colorInput.addEventListener('input', function () {
 colorInput.addEventListener('change', function () {
    checkboxInput.checked = false
    localStorage.removeItem('userColor')
-   localStorage.removeItem('userChoose')
+   localStorage.removeItem('userChoise')
    sessionStorage.setItem('userCounter', +sessionStorage.getItem('userCounter') + 1)
+   changeColorCounter.innerText = `Ви змінювали колір ${sessionStorage.getItem(
+      'userCounter'
+   )} разів протягом сесії браузера`
 })
+
+if (sessionStorage.getItem('userCounter')) {
+   changeColorCounter.innerText = `Ви змінювали колір ${sessionStorage.getItem(
+      'userCounter'
+   )} разів протягом сесії браузера`
+}
 
 checkboxInput.addEventListener('click', function () {
    const saveColor = checkboxInput.checked
    if (saveColor) {
       localStorage.setItem('userColor', colorInput.value)
-      localStorage.setItem('userChoose', saveColor)
+      localStorage.setItem('userChoise', saveColor)
    } else {
       localStorage.removeItem('userColor')
-      localStorage.removeItem('userChoose')
+      localStorage.removeItem('userChoise')
    }
 })
 
@@ -46,9 +57,10 @@ title.innerText = 'Оберіть колір фону'
 container.append(title)
 container.append(colorInput)
 container.append(checkboxLabel)
+container.append(changeColorCounter)
 
 window.onload = () => {
-   if (localStorage.getItem('userChoose')) {
+   if (localStorage.getItem('userChoise')) {
       checkboxInput.checked = true
       documentBody.style.backgroundColor = localStorage.getItem('userColor')
    }
@@ -100,4 +112,4 @@ function showTask() {
    }, 5000)
 }
 
-localStorage.clear()
+// localStorage.clear()
